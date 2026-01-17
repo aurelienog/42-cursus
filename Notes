@@ -1,3 +1,24 @@
+PUNTEROS VOID
+✔️ void * → el compilador no sabe el tamaño del objeto apuntado
+NO sabe:
+si apunta a 1 byte
+4 bytes
+100 bytes
+una estructura
+
+CUIDADO :
+void *vp;
+vp + 1  → ❌ ERROR
+👉 El compilador no puede calcular sizeof(*vp)
+👉 No sabe cuántos bytes avanzar
+
+✔️ unsigned char * → acceso byte a byte
+✔️ No cambia el tamaño del dato original
+✔️ Sirve para:
+serialización
+buffers
+manejo de memoria cruda
+
 Recursos :
 📺 Jacob Sorber – Memory in C (YouTube)
 
