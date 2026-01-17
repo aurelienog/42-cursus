@@ -1,0 +1,32 @@
+Recursos :
+📺 Jacob Sorber – Memory in C (YouTube)
+
+Busca:
+
+“Dynamic Memory Allocation in C”
+“malloc and free explained”
+“Stack vs Heap”
+
+👉 Qué debes aprender aquí:
+
+Diferencia stack / heap
+Qué pasa cuando una función termina
+Por qué devolver un puntero local es un error
+
+💡 Si solo ves un canal, que sea este.
+
+🧱 3. Stack vs Heap (clave para libft)
+📺 CodeVault – Stack vs Heap
+Vídeo corto, muy claro.
+
+Visualizar memoria (muy importante)
+🌐 Python Tutor (web)
+
+👉 https://pythontutor.com/c.html
+
+📺 Tutorial Valgrind básico
+Aprende a reconocer:
+definitely lost
+invalid read
+invalid write
+👉 Si entiendes Valgrind, libft no te puede tumbar por memoria.
