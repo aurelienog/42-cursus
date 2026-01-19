@@ -15,7 +15,7 @@
 static void	ft_printnbr(long n, int fd)
 {
 	long	i;
-	char	digits[12];
+	char	digits[20];
 
 	i = 0;
 	while (n > 0)
