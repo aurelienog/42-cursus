@@ -1,47 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/16 16:35:57 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/19 10:07:01 by aunoguei         ###   ########.fr       */
+/*   Created: 2026/01/19 10:13:25 by aunoguei          #+#    #+#             */
+/*   Updated: 2026/01/19 12:31:01 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	size_t	i;
-	size_t	length;
-	char	*str;
 
 	if (!s || !f)
-		return (NULL);
-	length = ft_strlen(s);
-	str = ft_calloc((length + 1), sizeof(char));
-	if (!str)
-		return (NULL);
+		return ;
 	i = 0;
 	while (s[i])
 	{
-		str[i] = f(i, s[i]);
+		f(i, &s[i]);
 		i++;
 	}
-	return (str);
 }
 /*
 int     main(void)
 {
-        char sumarASCII(unsigned int number, char c)
+        void to_upper_even(unsigned int number, char *c)
         {
-                return (number + c);
+                if (number % 2 == 0 && *c >= 'a' && *c <= 'z')
+                                *c -= 32;
         }
-        char (*ptr)(unsigned int,  char) = &sumarASCII;
-        char *str = ft_strmapi("hello world\0", ptr);
+        char str[] = "hello2 world";
+        void (*ptr)(unsigned int, char *) = &to_upper_even;
+        ft_striteri(str, ptr);
         printf("%s", str);
-        free(str);
         return (0);
 }*/

@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:33:32 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/16 13:23:29 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/19 09:42:26 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static size_t	count_words(char const *str, char c)
 	words = 0;
 	while (str[i])
 	{
-		if (str[i] != c && (str[i - 1] == c || i == 0))
+		if (str[i] != c && (i == 0 || str[i - 1] == c))
 			words++;
 		i++;
 	}
@@ -43,7 +43,7 @@ char	**ft_split(char const *s, char c)
 	words = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] != c && (s[i - 1] == c || i == 0))
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 		{
 			j = i;
 			while (s[j] != c && s[j] != '\0')
