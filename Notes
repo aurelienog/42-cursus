@@ -1,4 +1,71 @@
-UPDATE
+🧠 ¿Qué es una lista enlazada?
+
+Una lista enlazada es una estructura de datos formada por nodos.
+Cada nodo tiene:
+
+typedef struct s_list
+{
+    void            *content;
+    struct s_list   *next;
+} t_list;
+
+🔹 Cada nodo contiene:
+
+content → el dato (puede ser lo que sea)
+
+next → un puntero al siguiente nodo
+
+📌 A diferencia de un array:
+
+No está en memoria contigua
+
+No tiene tamaño fijo
+
+Se recorre nodo por nodo
+
+
+🧩 El puntero doble: t_list **lst
+
+Esto es CLAVE para entender tus funciones.
+
+❓ ¿Por qué t_list **lst?
+
+Porque queremos modificar la cabeza de la lista.
+
+Si usáramos:
+
+void ft_lstadd_front(t_list *lst)
+
+
+❌ Solo modificaríamos una copia del puntero.
+
+Con:
+
+t_list **lst
+
+
+✔️ Podemos cambiar a qué nodo apunta la lista.
+
+
+Regla de ORO del C
+
+C siempre pasa los argumentos por valor
+
+Eso incluye los punteros.
+
+📌 Pasar un puntero no significa pasar la variable original, sino una copia de su valor.
+
+🔑 4️⃣ Entonces… ¿cómo cambio el puntero original?
+
+👉 Pasando la dirección del puntero
+👉 Es decir: puntero a puntero
+
+t_list **lst;
+
+🎯 9️⃣ Conclusión que debes memorizar
+
+👉 Si una función necesita cambiar el primer nodo de la lista, usa t_list **
+
 
 PUNTEROS VOID
 ✔️ void * → el compilador no sabe el tamaño del objeto apuntado
