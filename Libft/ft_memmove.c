@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 11:59:20 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/16 12:17:48 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/15 09:39:12 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			destcpy[n] = cpysrc[n];
 		}
 	}
-	return ((void *)destcpy);
+	return ((void *)dest);
 }
 /*
 #include <stdio.h>

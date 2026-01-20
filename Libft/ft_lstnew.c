@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 14:58:11 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/19 15:36:54 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:33:17 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*ptr;
 
-	ptr = ft_malloc(1, sizeof(t_list));
+	if (!content)
+		return (NULL);
+	ptr = ft_calloc(1, sizeof(t_list));
 	if (!ptr)
 		return (NULL);
 	ptr->content = content;

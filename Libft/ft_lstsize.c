@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 16:35:29 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/19 17:08:49 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/20 12:28:22 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_lstsize(t_list *lst)
 {
 	size_t	i;
 
+	if (!lst)
+		return (0);
 	i = 0;
 	while (lst->next)
 		i++;

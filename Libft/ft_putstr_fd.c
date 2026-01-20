@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 14:17:20 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/19 14:20:20 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/20 09:03:46 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (!s)
-		return ;
 	size_t	i;
 
+	if (!s)
+		return ;
 	i = 0;
 	while (s[i])
 	{
