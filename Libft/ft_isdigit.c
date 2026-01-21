@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 11:37:33 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/15 08:36:49 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:38:24 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	ft_isdigit(int c)
 #include <stdio.h>
 int	main(void)
 {
-	printf("%d", ft_isdigit('8'));
-	printf("%d", ft_isdigit('a'));
-	printf("%d", ft_isdigit('/'));
+	printf("isdigit? retorno para '8' : %d", ft_isdigit('8'));
+	printf("retorno 'a' para : %d", ft_isdigit('a'));
+	printf("retorno '/' para: %d\n", ft_isdigit('/'));
 	return (0);
 }*/

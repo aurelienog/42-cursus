@@ -6,14 +6,16 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:36:11 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/20 16:09:34 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:05:51 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <strings.h>
-#include <stdint.h>
-#include <unistd.h>
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <stdlib.h>
+# include <strings.h>
+# include <stdint.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -192,6 +194,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
  * @param - s : The string to fill
  * c : the byte 
  * @return - a pointer to the memory area s
+ * @note - do not check for null pointers
  */
 void	*ft_memset(void *s, int c, size_t n);
 
@@ -200,6 +203,7 @@ void	*ft_memset(void *s, int c, size_t n);
  * @param - The string to erase data
  * n : the size to remove
  * @return - none
+ * @note - do not check for null pointers
  */
 void	ft_bzero(void *s, size_t n);
 
@@ -209,6 +213,7 @@ void	ft_bzero(void *s, size_t n);
  * n : the size to copy
  * @return : returns a pointer to dest
  * @note : the memory areas may not overlap
+ * Check for null pointers
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 
@@ -218,6 +223,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
  * n : the size to copy
  * @return : returns a pointer to dest
  * @note : the memory areas may overlap
+ * Check for null pointers
  */
 void	*ft_memmove(void *dest, const void *src, size_t n);
 
@@ -228,6 +234,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
  * n : the size to search
  * @return - return a pointer to the matching  byte  or  NULL  if  the
  * character does not occur in the given memory area.
+ * @note - do not check for null pointers
  */
 void	*ft_memchr(const void *s, int c, size_t n);
 
@@ -236,6 +243,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
  * s2 : the second string
  * n : the size to compare
  * @return - returns an integer less than, equal to, or  greater  than  zero
+ * @note - do not check for null pointers
  */
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
@@ -304,6 +312,7 @@ void	ft_putnbr_fd(int n, int fd);
 a new node. 
  * @param - content: The content to store in the new node
  * @return - a pointer to the new node
+ * @note - content can be NULL
  */
 t_list	*ft_lstnew(void *content);
 
@@ -324,6 +333,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 /** ft_lstsize - Counts the number of nodes in the list
  * @param - lst: The beginning of the list
  * @return - The length of the list
+ * @note : if *lst == NULL, *lst = new;
  */
 int		ft_lstsize(t_list *lst);
 
@@ -364,3 +374,4 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
  * @return - The new list or NULL if the allocation fails
  */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+#endif

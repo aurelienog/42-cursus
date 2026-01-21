@@ -1,12 +1,19 @@
 #include "libft.h"
 #include <stdio.h>
-#include <string.h>
-#include <limits.h>
 
-int	main(void)
+int     main(void)
 {
-	char *str = ft_strmapi("hello world\0", &ft_tolower());
-	printf("%s", str);
-	free(str);
-	return (0);
+        t_list  *list;
+        t_list  *last;
+
+
+        list = NULL;
+        ft_lstadd_back(&list, ft_lstnew("node 1\0"));
+        ft_lstadd_back(&list, ft_lstnew("node 2\0"));
+        ft_lstadd_back(&list, ft_lstnew("node 3\0"));
+        last = ft_lstlast(list);
+        if (last && list)
+                printf("last : %s\n", (char *)last->content);
+        return (0);
 }
+

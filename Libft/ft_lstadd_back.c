@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 09:21:17 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/20 11:51:30 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:07:35 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,28 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	if (!lst || !new)
 		return ;
-	last = malloc(sizeof(t_list));
-	last = ft_lstlast(lst[0]);
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	last = ft_lstlast(*lst);
 	last->next = new;
 }
+/*
+int     main(void)
+{
+        t_list  *list;
+        t_list  *last;
+
+
+        list = NULL;
+        ft_lstadd_back(&list, ft_lstnew("node 1\0"));
+        ft_lstadd_back(&list, ft_lstnew("node 2\0"));
+        ft_lstadd_back(&list, ft_lstnew("node 3\0"));
+        last = ft_lstlast(list);
+        if (last && list)
+                printf("last : %s\n", (char *)last->content);
+        return (0);
+}
+*/

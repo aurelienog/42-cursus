@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 10:51:00 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/15 08:29:00 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:38:01 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ int	ft_isalpha(int c)
 #include <stdio.h>
 int	main(void)
 {
-	printf("%d", ft_isalpha(8));
-	printf("%d", ft_isalpha('a'));
-	printf("%d", ft_isalpha('B'));
+	printf("Isalpha? retorno para 8 : %d / ", ft_isalpha(8));
+	printf("retorno para 'a' : %d / ", ft_isalpha('a'));
+	printf("retorna para 'B' : %d / ", ft_isalpha('B'));
+	printf("retorna space : %d \n", ft_isalpha(' '));
 	return (0);
 }*/

@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 11:43:03 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/15 08:22:05 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/21 12:26:55 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	ft_isalnum(int c)
 #include <stdio.h>
 int     main(void)
 {
-        printf("%d", ft_isalnum(' '));
-        printf("%d", ft_isalnum('a'));
-        printf("%d", ft_isalnum('B'));
+        printf("que retorna space : %d", ft_isalnum(' '));
+        printf("que retorna a : %d", ft_isalnum('a'));
+        printf("que retorna B : %d", ft_isalnum('B'));
         return (0);
 }
 */
