@@ -6,38 +6,35 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 09:21:27 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/15 10:18:15 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:05:34 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strcmp(char *str, char *to_find)
-{
-	size_t	i;
-
-	i = 0;
-	while (to_find[i])
-	{
-		if (to_find[i] != str[i])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
+	size_t	k;
 
 	i = 0;
-	while (i < len)
+	k = 0;
+	if (!little)
+		return ((char *)big);
+	while (big[i] && i < len)
 	{
-		if (ft_strcmp((char *)&big[i], (char *)little))
-			return ((char *)&big[i]);
+		while (big[i] == little[k] && i < len)
+		{
+			i++;
+			k++;
+		}
+		if (little[k] == '\0')
+			return ((char *)&big[i - k]);
+		i = (i - k);
+		k = 0;
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 /*
 #include <stdio.h>

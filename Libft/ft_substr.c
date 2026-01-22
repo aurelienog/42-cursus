@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 09:25:22 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/20 09:10:21 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 09:06:31 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char		*str;
 	size_t		i;
-	size_t		slen;
+	size_t		strlen;
 
 	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_calloc(1, sizeof(char)));
-	if (len > slen - start)
-		len = slen - start;
+	strlen = ft_strlen(s);
+	if (len > strlen - start)
+		len = strlen - start;
 	str = ft_calloc(len + 1, sizeof(char));
 	if (!str)
 		return (NULL);

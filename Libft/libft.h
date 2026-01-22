@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:36:11 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/21 15:05:51 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 10:20:06 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ char	*ft_strrchr(const char *s, int c);
  * s2 : the second string
  * n : the size to compare
  * @return -  an integer indicating the result of the comparison
+ * @note : values are interpreted as type unsigned char to determined
+ * the difference
  */
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
@@ -149,6 +151,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
  * @param - s1: The prefix string
  * s2: The suffix string
  * @return The new string or NULL if the allocation fails.
+ * @note - Check for null pointer.
  */
 char	*ft_strjoin(char const *s1, char const *s2);
 
@@ -157,6 +160,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
  * set: The string containing the set of characters to be removed 
  * from the beginning and the end
  * @return The trimmed string or NULL if the allocation fails
+ * @note - Check for null pointer.
  */
 char	*ft_strtrim(char const *s1, char const *set);
 
@@ -213,7 +217,7 @@ void	ft_bzero(void *s, size_t n);
  * n : the size to copy
  * @return : returns a pointer to dest
  * @note : the memory areas may not overlap
- * Check for null pointers
+ * do not check for null pointers
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 
@@ -223,7 +227,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
  * n : the size to copy
  * @return : returns a pointer to dest
  * @note : the memory areas may overlap
- * Check for null pointers
+ * do not check for null pointers
  */
 void	*ft_memmove(void *dest, const void *src, size_t n);
 
@@ -333,7 +337,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 /** ft_lstsize - Counts the number of nodes in the list
  * @param - lst: The beginning of the list
  * @return - The length of the list
- * @note : if *lst == NULL, *lst = new;
  */
 int		ft_lstsize(t_list *lst);
 

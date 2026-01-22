@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 10:22:48 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/21 13:46:13 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 09:06:50 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,18 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	}
 	return (newlist);
 }
+/*
+int     main(void)
+{
+        t_list  *list;
+        t_list  *new;
+
+
+        list = NULL;
+        ft_lstadd_back(&list, ft_lstnew("node 1\0"));
+        ft_lstadd_back(&list, ft_lstnew("node 2\0"));
+        ft_lstadd_back(&list, ft_lstnew("node 3\0"));
+	new = ft_lstmap(?????????????);
+        return (0);
+}
+*/
