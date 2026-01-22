@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:33:49 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/15 10:03:19 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:54:38 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strdup(const char *s)
 
 	cpy = (char *)s;
 	str = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!str)
+		return (NULL);
 	i = 0;
 	while (s[i])
 	{
@@ -35,7 +37,7 @@ int	main(void)
 {
 	char	*str;
 
-	str = ft_strdup("hello\0");
+	str = ft_strdup("hello");
 	printf("%s", str);
 	return (0);
 }*/

@@ -6,14 +6,13 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:36:11 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/22 10:20:06 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 17:02:54 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
-# include <strings.h>
 # include <stdint.h>
 # include <unistd.h>
 

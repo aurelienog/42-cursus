@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 11:59:20 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/22 09:38:04 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 16:47:34 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char		*destcpy;
-	const unsigned char	*cpysrc;
 	size_t				i;
 
-	cpysrc = (const unsigned char *)src;
+	if (dest == src || n == 0)
+		return (dest);
 	destcpy = (unsigned char *)dest;
 	if (dest < src)
 	{
 		i = 0;
 		while (i < n)
 		{
-			destcpy[i] = cpysrc[i];
+			destcpy[i] = ((unsigned char *)src)[i];
 			i++;
 		}
 	}
@@ -34,20 +34,28 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		while (n > 0)
 		{
 			n--;
-			destcpy[n] = cpysrc[n];
+			destcpy[n] = ((unsigned char *)src)[n];
 		}
 	}
 	return (dest);
 }
 /*
+#include "libft.h"
 #include <stdio.h>
 
-int	main(void)
+int     main(void)
 {
-	char	buffer[4];
+        char    src[12] = "abcdefgh";
+        char    dest[12] = "hola-mundo";
+        char    orisrc[12] = "abcdefgh";
+        char    oridest[12] = "hola-mundo";
 
-	buffer[4] = '\0';
-	ft_memmove(buffer, "hello", 3);
-	printf("%s", buffer);
-	return (0);
-}*/
+        printf("before FT: %s\n", src);
+        ft_memmove(src+2, dest+3, 9);
+        printf("after FT: %s", src);
+        printf("\nbefore ORIGINAL: %s\n", orisrc);
+        memmove(orisrc+2, oridest+3, 9);
+        printf("after ORIGINAL: %s", orisrc);
+        return (0);
+}
+*/

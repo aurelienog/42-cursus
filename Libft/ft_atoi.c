@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 14:43:19 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/22 08:40:47 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:42:04 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_atoi(const char *nptr)
 
 int	main(void)
 {
-	char	*string = "       ---+-+1234eaw45";
+	char	*string = "+1234eaw45";
 
 	printf("%d", ft_atoi(string));
 	return (0);

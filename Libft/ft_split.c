@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 13:33:32 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/19 09:42:26 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:19:50 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,12 @@ static size_t	count_words(char const *str, char c)
 	return (words);
 }
 
-char	**ft_split(char const *s, char c)
+char	**split_words(char **ptr, char const *s, char c, size_t words)
 {
-	char	**ptr;
-	size_t	words;
 	size_t	i;
 	size_t	j;
 
-	if (!s)
-		return (NULL);
-	words = count_words(s, c);
-	ptr = ft_calloc(words + 1, sizeof(char *));
 	i = 0;
-	words = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] != c && (i == 0 || s[i - 1] == c))
@@ -49,11 +42,34 @@ char	**ft_split(char const *s, char c)
 			while (s[j] != c && s[j] != '\0')
 				j++;
 			ptr[words] = (char *)ft_substr((char *)s, i, j - i);
+			if (!ptr[words])
+			{
+				i = 0;
+				while (ptr[i])
+					free(ptr[i++]);
+				free(ptr);
+				return (NULL);
+			}
 			words++;
 		}
 		i++;
 	}
 	return (ptr);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**ptr;
+	size_t	words;
+
+	if (!s)
+		return (NULL);
+	words = count_words(s, c);
+	ptr = ft_calloc(words + 1, sizeof(char *));
+	if (!ptr)
+		return (NULL);
+	words = 0;
+	return (split_words(ptr, s, c, words));
 }
 /*
 #include <stddef.h>

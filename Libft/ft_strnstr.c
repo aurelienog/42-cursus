@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 09:21:27 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/22 11:05:34 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:15:31 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	i = 0;
 	k = 0;
-	if (!little)
+	if (!*little)
 		return ((char *)big);
 	while (big[i] && i < len)
 	{

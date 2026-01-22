@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 11:04:33 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/22 09:34:57 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/22 15:36:51 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	const unsigned char	*copysrc;
 
 	i = 0;
+	if (!dest && !src)
+		return (0);
 	buffer = (unsigned char *)dest;
 	copysrc = (const unsigned char *)src;
 	while (i < n)
