@@ -12,26 +12,31 @@
 
 #include "ft_printf.h"
 
-void	putnbr_hex(int n, char *base)
+int	putnbr_hex(unsigned int n, char *base)
 {
-	long	num;
-	long	numbers[30];
+	unsigned int	num;
+	unsigned int	numbers[30];
+	int		count;
 	int		i;
 
-	num = (long) n;
+	num = n;
 	if (num == 0)
+	{
 		write(1, "0", 1);
-	if (num < 0)
-		num *= -1;
+		return (1);
+	}
 	i = 0;
+	count = 0;
 	while (num > 0)
 	{
 		numbers[i] = (num % 16);
 		num /= 16;
 		i++;
+		count++;
 	}
 	while (i-- > 0)
 		write(1, &base[numbers[i]], 1);
+	return (count);
 }
 /*
 int	main(void)
