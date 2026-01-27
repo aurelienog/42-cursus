@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:14:27 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/26 16:58:03 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/27 15:12:35 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,58 @@
 #include <limits.h>
 #include <stdarg.h>
 
-int		ft_printf(const char *format, ...);
 /* ************************************************************************** */
 /*                            OUTPUT FUNCTIONS                                */
 /* ************************************************************************** */
 
+/** ft_printf - write output to stdout according to a format that specifies
+ * how subsequent arguments are converted for output
+ * @param - format: The string to output
+ * @return - the number of bytes printed
+ */
+int		ft_printf(const char *format, ...);
+
 /** ft_putstr_fd - Outputs the string ’s’ to the specified file descriptor
  * @param - s: The string to output.
  * fd: The file descriptor on which to write
- * @return - none
+ * @return - the number of bytes printed
  */
-void	ft_putstr_fd(char *s, int fd);
+int		ft_putstr_fd(char *s, int fd);
 
 /** ft_putnbr_fd - Outputs the integer ’n’ to the specified file descriptor
- * @param - s: The integer to output.
+ * @param - n: The integer to output.
  * fd: The file descriptor on which to write
- * @return - none
+ * @return - the number of bytes printed
  */
-void	ft_putnbr_fd(int n, int fd);
+int		ft_putnbr_fd(int n, int fd);
 
 /** ft_putchar_fd - Outputs the character ’c’ to the specified file descriptor
  * @param - c: The character to output
  * fd: The file descriptor on which to write
- * @return - none
+ * @return - the number of bytes printed
  */
-void	ft_putchar_fd(char c, int fd);
+int		ft_putchar_fd(char c, int fd);
 
-void    putnbr_hex(int n, char *base);
+/** ft_putnbr_hex - convert ’n’ to the base and output the result
+ * @param - n: the unsigned integer to output.
+ * base: the base to convert to
+ * @return - the number of bytes printed
+ */
+int		putnbr_hex(unsigned int n, char *base);
 
-void	ft_unsigned_putnbr_fd(unsigned int n, int fd);
+/** ft_unsigned_putnbr_fd - Outputs ’n’ to the specified file descriptor
+ * @param - n: The unsigned integer to output.
+ * fd: The file descriptor on which to write
+ * @return - the number of bytes printed
+ */
+int		ft_unsigned_putnbr_fd(unsigned int n, int fd);
+
+/** print_address - Outputs the memory address of the pointer received
+ * @param - ptr: the pointer which address will be print
+ * fd: The file descriptor on which to write
+ * @return - the number of bytes printed
+ */
+int		print_address(void *ptr, int fd);
 
 /* ************************************************************************** */
 /*                            STRING FUNCTIONS                                */

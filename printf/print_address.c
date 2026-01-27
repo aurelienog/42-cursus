@@ -1,38 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsigned_putnbr_fd.c                            :+:      :+:    :+:   */
+/*   print_address.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 16:48:02 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/27 12:35:30 by aunoguei         ###   ########.fr       */
+/*   Created: 2026/01/27 13:07:31 by aunoguei          #+#    #+#             */
+/*   Updated: 2026/01/27 13:42:08 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_unsigned_putnbr_fd(unsigned int n, int fd)
+static int	putnbr_hex_long(unsigned long n, char *base)
 {
-	unsigned int	i;
-	char			digits[33];
+	unsigned long	numbers[32];
+	int				i;
 	int				count;
 
+	if (n == 0)
+		return (write(1, "0", 1));
 	i = 0;
 	count = 0;
 	while (n > 0)
 	{
-		digits[i] = (n % 10) + '0';
-		n /= 10;
+		numbers[i] = (n % 16);
+		n /= 16;
 		count++;
 		i++;
 	}
-	digits[i] = n;
+	i--;
 	while (i > 0)
 	{
-		write(fd, &(digits[i]), 1);
+		write(1, &base[numbers[i]], 1);
 		i--;
 	}
-	write(fd, &(digits[i]), 1);
+	write(1, &base[numbers[i]], 1);
+	return (count);
+}
+
+int	print_address(void *ptr, int fd)
+{
+	int					count;
+	unsigned long		address;
+
+	if (!ptr)
+	{
+		write(fd, "0x0", 3);
+		return (3);
+	}
+	address = (unsigned long)ptr;
+	write(fd, "0x", 2);
+	count = 2;
+	count += putnbr_hex_long(address, "0123456789abcdef");
 	return (count);
 }

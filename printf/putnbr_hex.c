@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 10:56:38 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/26 15:38:41 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/27 13:39:26 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 int	putnbr_hex(unsigned int n, char *base)
 {
-	unsigned int	num;
-	unsigned int	numbers[30];
-	int		count;
-	int		i;
+	unsigned int	numbers[32];
+	int				i;
+	int				count;
 
-	num = n;
-	if (num == 0)
-	{
-		write(1, "0", 1);
-		return (1);
-	}
+	if (n == 0)
+		return (write(1, "0", 1));
 	i = 0;
 	count = 0;
-	while (num > 0)
+	while (n > 0)
 	{
-		numbers[i] = (num % 16);
-		num /= 16;
-		i++;
+		numbers[i] = (n % 16);
+		n /= 16;
 		count++;
+		i++;
 	}
-	while (i-- > 0)
+	i--;
+	while (i > 0)
+	{
 		write(1, &base[numbers[i]], 1);
+		i--;
+	}
+	write(1, &base[numbers[i]], 1);
 	return (count);
 }
 /*
