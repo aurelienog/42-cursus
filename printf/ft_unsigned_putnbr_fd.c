@@ -18,6 +18,11 @@ int	ft_unsigned_putnbr_fd(unsigned int n, int fd)
 	char			digits[33];
 	int				count;
 
+	if (n == 0)
+	{
+    		write(1, "0", 1);
+    		return (1);
+	}
 	i = 0;
 	count = 0;
 	while (n > 0)
