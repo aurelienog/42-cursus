@@ -19,7 +19,7 @@ int	ft_unsigned_putnbr_fd(unsigned int n, int fd)
 	int				count;
 
 	if (n == 0)
-		return (write(1, "0", 1));
+		return (write(fd, "0", 1));
 	i = 0;
 	count = 0;
 	while (n > 0)
@@ -29,13 +29,10 @@ int	ft_unsigned_putnbr_fd(unsigned int n, int fd)
 		count++;
 		i++;
 	}
-	digits[i] = n;
-	i--;
 	while (i > 0)
 	{
-		write(fd, &(digits[i]), 1);
 		i--;
+		write(fd, &(digits[i]), 1);
 	}
-	write(fd, &(digits[i]), 1);
 	return (count);
 }
