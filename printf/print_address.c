@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 13:07:31 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/27 13:42:08 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:55:38 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	print_address(void *ptr, int fd)
 
 	if (!ptr)
 	{
-		write(fd, "0x0", 3);
-		return (3);
+		write(fd, "(nil)", 5);
+		return (5);
 	}
 	address = (unsigned long)ptr;
 	write(fd, "0x", 2);

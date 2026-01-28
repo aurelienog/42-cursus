@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 16:48:02 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/27 12:35:30 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/28 15:58:21 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	ft_unsigned_putnbr_fd(unsigned int n, int fd)
 	int				count;
 
 	if (n == 0)
-	{
-    		write(1, "0", 1);
-    		return (1);
-	}
+		return (write(1, "0", 1));
 	i = 0;
 	count = 0;
 	while (n > 0)
@@ -33,6 +30,7 @@ int	ft_unsigned_putnbr_fd(unsigned int n, int fd)
 		i++;
 	}
 	digits[i] = n;
+	i--;
 	while (i > 0)
 	{
 		write(fd, &(digits[i]), 1);

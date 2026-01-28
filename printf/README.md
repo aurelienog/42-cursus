@@ -1,4 +1,4 @@
-This project has been created as part of the 42 curriculum by aunoguei.
+*This project has been created as part of the 42 curriculum by aunoguei.*
 
 #Description
 
@@ -21,7 +21,7 @@ It supports the following format specifiers:
 - `%d`
 - `%i`
 - `%u`
-- `%x` 
+- `%x`
 - `%X`
 - `%%`
 
