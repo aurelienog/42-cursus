@@ -17,6 +17,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42
+#endif
+
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 char	*move_end_line(const char *str, const char *last_line);
