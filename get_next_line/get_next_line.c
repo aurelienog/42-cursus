@@ -3,65 +3,104 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:27:07 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/29 18:34:15 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/30 17:01:59 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line.h"i
+
+char	*substr(char *readed, char *line)
+{
+	size_t	i;
+	size_t	length;
+	char	*remainder;
+
+	length = ft_strlen(line);
+	remainder = malloc(length);
+	if (!remainder)
+		return (NULL);
+	i = 0;
+	while(readed[length])
+		remainder[i++] = readed[length++];
+	return (remainder);
+}
+
+static	*extract_line(char *str)
+{
+	size_t	i;
+	char	*line;
+
+	line = malloc(get_line_length(str));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (str[i] != '\n' || str[i] != '\0')
+	{
+		line[i] = str[i];
+                i++;
+	}
+	if (line[i] == '\n')
+	{
+		line[i] == '\n';
+		return (line);
+	}
+	else if (str[i] == '\0')
+	{
+		line[i] == '\0';
+		return (line);
+	}
+	return (line);
+}
 
 char	*get_next_line(int fd)
 {
-	size_t	i;
-	int	bytesread;
+	static char	*readed;
+	char    *line;
 	char	*buffer;
-	char	*line;
+	int		bytesread;
 
-
-	buffer = malloc(1024 + 1);
-	bytesread = read(fd, buffer, 1024);
-	if (bytesread <= 0)
-		return (NULL);
-	buffer[bytesread] = '\0';
-	i = 0;
-	while (buffer[i] != '\n' || buffer[i] != '\0')
-                i++;
-	line = malloc((i + 1) * sizeof(char));
-	i = 0;
-	while (buffer[i] != '\n' || buffer[i] != '\0')
+	if (!readed)
 	{
-		line[i] = buffer[i];
-		i++;
+		readed = malloc();
+		if (!readed)
+			return (NULL);
+		bytesread = read(fd, buffer, BUFFER_SIZE);
+		ft_strjoin(readed, buffer);
 	}
-	line[i] = '\0';
-	ft_putstr_fd(line, 1);
-	if (i > 0 && buffer[i - 1] == '\n')
-		ft_putchar_fd('\n', 1);
-	free(buffer);
+	while(!ft_strrchr(readed, '\n'))
+	{
+		bytesread = read(fd, buffer, BUFFER_SIZE);
+		ft_strjoin(readed, buffer);
+	}
+	line = extract_line(readed);
+	readed = substr(readed, line);//position at the end of line and add memory	
+	if (bytesread <= 0 && !readed)
+		free(readed);
 	return (line);
 }
+#include <stdio.h>
+# include <fcntl.h>
 
 int	main(void)
 {
 	char	*last_line;
 	int	fd;
-	char	*buffer;
-
 	
 	fd = open("test.txt", O_RDONLY);
         if (fd == -1)
                 return (0);
-	last_line = get_next_line(fd);
-        buffer = move_end_line(buffer, last_line);
-	
-	while(buffer)
+
+	printf("%s", last_line);
+	while(last_line)
 	{
 		last_line = get_next_line(fd);
-		buffer = move_end_line(buffer, last_line);
-		free(last_line);
+		printf("%s", last_line);
 	}
+	if (last_line)
+		free(last_line);
 	close(fd);
 	return (0);
 }

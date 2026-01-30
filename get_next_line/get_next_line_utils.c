@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:28:20 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/29 17:35:56 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/01/30 11:08:03 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,11 @@ char	*move_end_line(const char *str, const char *last_line)
 			i++;
 			j++;
 		}
-		if (last_line[j] == '\0')
+		if (last_line[j] == '\0' || last_line[j] == '\n')
 			return ((char *) &str[i]);
 		i = (i - j);
 		j = 0;
 		i++;
 	}
 	return (NULL);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	size_t	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		write (fd, &s[i], 1);
-		i++;
-	}
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
 }
