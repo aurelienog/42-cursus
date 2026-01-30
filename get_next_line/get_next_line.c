@@ -10,21 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"i
+#include "get_next_line.h"
 
 char	*substr(char *readed, char *line)
 {
 	size_t	i;
-	size_t	length;
+	size_t	j;
 	char	*remainder;
 
-	length = ft_strlen(line);
-	remainder = malloc(length);
+	if (ft_strlen(readed) <= ft_strlen(line))
+		return (NULL);
+	remainder = malloc(ft_strlen(readed) - ft_strlen(line) + 1);
+	i = ft_strlen(line);
 	if (!remainder)
 		return (NULL);
-	i = 0;
-	while(readed[length])
-		remainder[i++] = readed[length++];
+	j = 0;
+	while(readed[i])
+		remainder[j++] = readed[i++];
+	remainder[j] = '\0';
 	return (remainder);
 }
 
@@ -33,22 +36,19 @@ static	*extract_line(char *str)
 	size_t	i;
 	char	*line;
 
-	line = malloc(get_line_length(str));
-	if (!line)
-		return (NULL);
 	i = 0;
 	while (str[i] != '\n' || str[i] != '\0')
-	{
-		line[i] = str[i];
                 i++;
-	}
-	if (line[i] == '\n')
+	if (str[i] == '\n')
 	{
+		line = malloc(i + 1);
+		//copiar
 		line[i] == '\n';
 		return (line);
 	}
-	else if (str[i] == '\0')
+	else
 	{
+		line = malloc(i);
 		line[i] == '\0';
 		return (line);
 	}
@@ -59,24 +59,29 @@ char	*get_next_line(int fd)
 {
 	static char	*readed;
 	char    *line;
-	char	*buffer;
+	char	buffer[BUFFER_SIZE + 1];
 	int		bytesread;
 
+	bytesread = read(fd, buffer, BUFFER_SIZE);
+	if (bytesread <= 0)
+		return (NULL);
+	buffer[bytesread] = '\0';
 	if (!readed)
+		readed = ft_strcpy(buffer);
+	else
+		readed = ft_strjoin(readed, buffer);
+	while(!ft_strrchr(readed, '\n') && bytesread > 0)
 	{
-		readed = malloc();
-		if (!readed)
+		bytesread = read(fd, buffer, BUFFER_SIZE);
+		if (bytesread <= 0)
+		{
+			line = extract_line(readed);
 			return (NULL);
-		bytesread = read(fd, buffer, BUFFER_SIZE);
-		ft_strjoin(readed, buffer);
-	}
-	while(!ft_strrchr(readed, '\n'))
-	{
-		bytesread = read(fd, buffer, BUFFER_SIZE);
-		ft_strjoin(readed, buffer);
+		}
+		buffer[bytesread] = 0;
 	}
 	line = extract_line(readed);
-	readed = substr(readed, line);//position at the end of line and add memory	
+	readed = substr(readed, line);//add memory and copy what is after line	
 	if (bytesread <= 0 && !readed)
 		free(readed);
 	return (line);
