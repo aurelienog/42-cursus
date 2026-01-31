@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*substr(char *readed, char *line)
+static char	*substr(char *readed, char *line)
 {
 	size_t	i;
 	size_t	j;
@@ -21,9 +21,9 @@ char	*substr(char *readed, char *line)
 	if (ft_strlen(readed) <= ft_strlen(line))
 		return (NULL);
 	remainder = malloc(ft_strlen(readed) - ft_strlen(line) + 1);
-	i = ft_strlen(line);
 	if (!remainder)
 		return (NULL);
+	i = ft_strlen(line);
 	j = 0;
 	while(readed[i])
 		remainder[j++] = readed[i++];
@@ -31,18 +31,20 @@ char	*substr(char *readed, char *line)
 	return (remainder);
 }
 
-static	*extract_line(char *str)
+static char	*extract_line(char *str)
 {
 	size_t	i;
 	char	*line;
 
 	i = 0;
 	while (str[i] != '\n' || str[i] != '\0')
+	{
+		line[i] = str[i];
                 i++;
+	}
 	if (str[i] == '\n')
 	{
 		line = malloc(i + 1);
-		//copiar
 		line[i] == '\n';
 		return (line);
 	}
@@ -86,6 +88,7 @@ char	*get_next_line(int fd)
 		free(readed);
 	return (line);
 }
+/*
 #include <stdio.h>
 # include <fcntl.h>
 
@@ -108,4 +111,4 @@ int	main(void)
 		free(last_line);
 	close(fd);
 	return (0);
-}
+}*/
