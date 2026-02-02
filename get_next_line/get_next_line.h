@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:29:48 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/30 10:32:17 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/02 11:53:09 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BUFFER_SIZE 42
 #endif
 
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
-char	*move_end_line(const char *str, const char *last_line);
+char	*newstrjoin(char *str1, char *str2);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
 #endif

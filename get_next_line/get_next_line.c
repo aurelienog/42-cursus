@@ -6,28 +6,39 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:27:07 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/30 17:01:59 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/02 14:51:41 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*substr(char *readed, char *line)
+static char	*newsubstr(char *readed, char *line)
 {
 	size_t	i;
 	size_t	j;
+	size_t	length;
 	char	*remainder;
 
-	if (ft_strlen(readed) <= ft_strlen(line))
+	if (!readed)
 		return (NULL);
-	remainder = malloc(ft_strlen(readed) - ft_strlen(line) + 1);
+	length = ft_strlen(readed) - ft_strlen(line);
+	if (length == 0)
+	{
+		free(readed);
+		return (NULL);
+	}
+	remainder = malloc((length + 1) * sizeof(char));
 	if (!remainder)
+	{
+		free(readed);
 		return (NULL);
+	}
 	i = ft_strlen(line);
 	j = 0;
 	while(readed[i])
 		remainder[j++] = readed[i++];
 	remainder[j] = '\0';
+	free(readed);
 	return (remainder);
 }
 
@@ -36,22 +47,32 @@ static char	*extract_line(char *str)
 	size_t	i;
 	char	*line;
 
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i] != '\n' || str[i] != '\0')
+                i++;
+	if (str[i] == '\n')
+		line = malloc((i + 1) * sizeof(char));
+	else
+		line = malloc(i * sizeof(char));
+	if (!line)
+		return (NULL);
 	i = 0;
 	while (str[i] != '\n' || str[i] != '\0')
 	{
 		line[i] = str[i];
-                i++;
+		i++;
 	}
 	if (str[i] == '\n')
 	{
-		line = malloc(i + 1);
-		line[i] == '\n';
+		line[i] = '\n';
+		line[i + 1] = '\0';
 		return (line);
 	}
 	else
 	{
-		line = malloc(i);
-		line[i] == '\0';
+		line[i] = '\0';
 		return (line);
 	}
 	return (line);
@@ -64,31 +85,27 @@ char	*get_next_line(int fd)
 	char	buffer[BUFFER_SIZE + 1];
 	int		bytesread;
 
-	bytesread = read(fd, buffer, BUFFER_SIZE);
-	if (bytesread <= 0)
-		return (NULL);
-	buffer[bytesread] = '\0';
-	if (!readed)
-		readed = ft_strcpy(buffer);
-	else
-		readed = ft_strjoin(readed, buffer);
-	while(!ft_strrchr(readed, '\n') && bytesread > 0)
+	line = extract_line(readed);
+	if (!line)
 	{
 		bytesread = read(fd, buffer, BUFFER_SIZE);
 		if (bytesread <= 0)
-		{
-			line = extract_line(readed);
 			return (NULL);
-		}
-		buffer[bytesread] = 0;
+		buffer[bytesread] = '\0';
+		readed = newstrjoin(readed, line);
+	}
+	while(!ft_strchr((const char *)readed, '\n') && bytesread > 0)
+	{
+		bytesread = read(fd, buffer, BUFFER_SIZE);
+		if (bytesread <= 0)
+			break;
+		buffer[bytesread] = '\0';
+		readed = newstrjoin(readed, buffer);
 	}
 	line = extract_line(readed);
-	readed = substr(readed, line);//add memory and copy what is after line	
-	if (bytesread <= 0 && !readed)
-		free(readed);
+	readed = newsubstr(readed, line);
 	return (line);
 }
-/*
 #include <stdio.h>
 # include <fcntl.h>
 
@@ -101,14 +118,17 @@ int	main(void)
         if (fd == -1)
                 return (0);
 
+	last_line = get_next_line(fd);
 	printf("%s", last_line);
+	free(last_line);
+
 	while(last_line)
 	{
 		last_line = get_next_line(fd);
 		printf("%s", last_line);
+		 free(last_line);
+
 	}
-	if (last_line)
-		free(last_line);
 	close(fd);
 	return (0);
-}*/
+}

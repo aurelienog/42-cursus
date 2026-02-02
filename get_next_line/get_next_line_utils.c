@@ -6,33 +6,64 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:28:20 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/01/30 11:08:03 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/02 13:25:17 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*move_end_line(const char *str, const char *last_line)
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while(s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (const char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if ((char)c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
+}
+
+char	*newstrjoin(char *str1, char *str2)
 {
 	size_t	i;
 	size_t	j;
+	char	*new;
 
-	i = 0;
-	j = 0;
-	if (!*last_line)
-		return ((char *)str);
-	while (str[i])
+	if (!str1)
+		new = malloc((ft_strlen(str2) + 1) * sizeof(char));
+	else
+		new = malloc((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
+	if (!new)
 	{
-		while (str[i] == last_line[j])
-		{
-			i++;
-			j++;
-		}
-		if (last_line[j] == '\0' || last_line[j] == '\n')
-			return ((char *) &str[i]);
-		i = (i - j);
-		j = 0;
+		free(str1);
+		return (NULL);
+	}
+	i = 0;
+	while(str1 && str1[i])
+	{
+		new[i] = str1[i];
 		i++;
 	}
-	return (NULL);
+	j = 0;
+	while(str2[j])
+		new[i++] = str2[j++];
+	new[i] = '\0';
+	if (str1)
+		free(str1);
+	return (new);
 }
