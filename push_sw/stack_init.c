@@ -26,13 +26,14 @@ static void	ft_lstclear(t_list **lst)
 	}
 }
 
-static char	ft_atoi(char *str)
+static int	ft_atoi(char *str)
 {
 	int	i;
 	int	sign;
 	int	number;
 
 	i = 0;
+	sign = 1;
 	number = 0;
 	if (str[i] == '+' || str[i] == '-')
 	{
@@ -42,7 +43,7 @@ static char	ft_atoi(char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		number = number * 10 + nptr[i++] - '0';
+		number = number * 10 + str[i++] - '0';
 	}
 	return (number * sign);
 }
@@ -51,13 +52,13 @@ t_list	*init_stack_a(char **numbers)
 {
 	size_t	i;
 	int		num;
-	t_list	node;
+	t_list	*node;
 	t_list	*stack_a;
 
 	i = 0;
 	stack_a = NULL;
 	node = NULL;
-	while (*numbers[i])
+	while (numbers[i])
 	{
 		num = ft_atoi(*numbers[i]);
 		node = ft_lstnew(num);
@@ -74,12 +75,12 @@ t_list	*init_stack_a(char **numbers)
 
 t_stacks	*init_stacks(char **argv)
 {
-	t_stacks	stacks;
+	t_stacks	*stacks;
 
 	stacks = malloc(1 * sizeof(t_stacks));
 	if (!stacks)
 		return (NULL);
 	stacks->a =  init_stack_a(argv);
-	//stacks->b = NULL;
+	stacks->b = NULL;
 	return (stacks);
 }

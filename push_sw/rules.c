@@ -35,21 +35,26 @@ int	compute_disorder(char *stack)
 	return (mistakes / total_pairs);
 }
 */
-void	swap(t_list *stack)
+void	swap(t_list **stack)
 {
+	if (!stack || !(*stack) || !((*stack)->next))
+		return ;
 	t_list	*temp_a;
 	t_list	*temp_b;
 
-	temp_a = stack;
-	temp_b = stack->next;
-	stack->next = temp_a;
-	temp_b->next = temp_b;
+	temp_a = *stack;
+	temp_b = (*stack)->next;
+	(*stack)->next = temp_b->next;
+	(temp_b)->next = temp_a;
+	(*stack) = temp_b;
 }
 
 void	push(t_list **src, t_list **dest)
 {
 	t_list	*temp;
 
+	if (*src == NULL)
+		return ;
 	temp = (*src)->next;
 	ft_lstadd_front(dest, *src);
 	*src = temp;
@@ -59,7 +64,9 @@ void	rotate(t_list **stack)
 {
 	t_list	*last;
 	t_list	*new_first;
-
+	
+	if (!stack || !(*stack) || !((*stack)->next))
+		return ;
 	last = ft_lstlast(*stack);
 	new_first = (*stack)->next;
 	(*stack)->next = NULL;
@@ -69,25 +76,19 @@ void	rotate(t_list **stack)
 
 void	reverse(t_list **stack)
 {
-	int		size;
-	int		i;
 	t_list	*last;
 	t_list	*before_last;
-	t_list	*ref;
+	t_list	*current;
 
-	i = 0;
-	ref = *stack;
-	size = ft_lstsize(*stack);
-	while (i < size - 2)
-	{
-		*stack = (*stack)->next;
-		i++;
-	}
-	before_last = *stack;
-	last = (*stack)->next;
+	if (!stack || !(*stack) || !((*stack)->next))
+		return ;
+	current = *stack;
+	while (current->next->next)
+		current = current->next;
+	before_last = current;
+	last = current->next;
 	before_last->next = NULL;
 	ft_lstadd_front(stack, last);
-	last->next = ref;
 }
 /*
 #include <stdio.h>
