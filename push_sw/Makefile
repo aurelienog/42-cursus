@@ -2,19 +2,19 @@ NAME = push_swap
 
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 
-SRC = rules.c list_utils.c stack_init.c
+SRC = push_swap.c rules.c list_utils.c stack_init.c operations.c rotate.c reverse.c
 OBJ = $(SRC:.c=.o)
-
+HEADERS = push_swap.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c push_swap.h
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

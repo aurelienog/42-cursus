@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:38:04 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/03 16:13:48 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/04 09:41:44 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,23 @@ int	compute_disorder(char *stack)
 */
 void	swap(t_list **stack)
 {
-	if (!stack || !(*stack) || !((*stack)->next))
-		return ;
 	t_list	*temp_a;
 	t_list	*temp_b;
 
+	if (!stack || !(*stack) || !((*stack)->next))
+		return ;
 	temp_a = *stack;
 	temp_b = (*stack)->next;
 	(*stack)->next = temp_b->next;
-	(temp_b)->next = temp_a;
+	temp_b->next = temp_a;
 	(*stack) = temp_b;
 }
 
-void	push(t_list **src, t_list **dest)
+void	push(t_list **dest, t_list **src)
 {
 	t_list	*temp;
 
-	if (*src == NULL)
+	if (!*src)
 		return ;
 	temp = (*src)->next;
 	ft_lstadd_front(dest, *src);
@@ -64,7 +64,7 @@ void	rotate(t_list **stack)
 {
 	t_list	*last;
 	t_list	*new_first;
-	
+
 	if (!stack || !(*stack) || !((*stack)->next))
 		return ;
 	last = ft_lstlast(*stack);
@@ -90,7 +90,7 @@ void	reverse(t_list **stack)
 	before_last->next = NULL;
 	ft_lstadd_front(stack, last);
 }
-/*
+/*MAIN PARA PUSH
 #include <stdio.h>
 int     main(void)
 {
@@ -105,36 +105,36 @@ int     main(void)
 
         stack_a = NULL;
 	stack_b = NULL;
-        nodea = ft_lstnew("je suis 3a\0");
+        nodea = ft_lstnew(50);
         ft_lstadd_front(&stack_a, nodea);
-        nodemiddle = ft_lstnew("je suis 2a\0");
+        nodemiddle = ft_lstnew(45);
         ft_lstadd_front(&stack_a, nodemiddle);
-        nodeb = ft_lstnew("je suis 1a\0");
+        nodeb = ft_lstnew(40);
         ft_lstadd_front(&stack_a, nodeb);
-	node1 = ft_lstnew("je suis 3b\0");
+	node1 = ft_lstnew(184651);
         ft_lstadd_front(&stack_b, node1);
-        node2 = ft_lstnew("je suis 2b\0");
+        node2 = ft_lstnew(294643);
         ft_lstadd_front(&stack_b, node2);
-        node3 = ft_lstnew("je suis 1b\0");
+        node3 = ft_lstnew(354915);
         ft_lstadd_front(&stack_b, node3);
 	push(&stack_a, &stack_b);
 	printf("stack a\n");
         while (stack_a)
         {
-                printf("Before %s ", (char *)stack_a->content);
+                printf("Before %d ", stack_a->content);
                 stack_a = stack_a->next;
         }
         printf("\n");
 	printf("stack b\n");
         while (stack_b)
         {
-                printf("after %s ", (char *)stack_b->content);
+                printf("after %d ", stack_b->content);
                 stack_b = stack_b->next;
         }
         return (0);
 }
 */
-/*
+/*MAIN PARA ROTATE O REVERSE
 #include <stdio.h>
 int     main(void)
 {
@@ -146,53 +146,25 @@ int     main(void)
 
 	
         list = NULL;
-        nodea = ft_lstnew("je suis 3\0");
+        nodea = ft_lstnew(30);
         ft_lstadd_front(&list, nodea);
-        nodemiddle = ft_lstnew("je suis 2\0");
+        nodemiddle = ft_lstnew(20);
         ft_lstadd_front(&list, nodemiddle);
-        nodeb = ft_lstnew("je suis 1\0");
+        nodeb = ft_lstnew(10);
         ft_lstadd_front(&list, nodeb);
 	ref = list;
 	while (list)
 	{
-		printf("Before %s ", (char *)list->content);
+		printf("Before %d ", list->content);
 		list = list->next;
 	}
 	printf("\n");
-	rotate(&ref);
+	reverse(&ref);
 	while (ref)
         {
-                printf("after %s ", (char *)ref->content);
+                printf("after %d ", ref->content);
                 ref = ref->next;
         }
         return (0);
 }
 */
-/*
-MAIN PARA ROTATE 
-#include <stdio.h>
-int	main(void)
-{
-	t_list	*list;
-	t_list	*nodea;
-	t_list	*nodemiddle;
-	t_list	*nodeb;
-	t_list	*last;
-
-	list = NULL;
-	nodea = ft_lstnew("je suis 3");
-	ft_lstadd_front(&list, nodea);
-	nodemiddle = ft_lstnew("je suis 2");
-	ft_lstadd_front(&list, nodemiddle);
-	nodeb = ft_lstnew("je suis 1");
-	ft_lstadd_front(&list, nodeb);
-	last = ft_lstlast(list);
-	printf("first antes %s\n", (char *)list->content);
-	printf("last antes %s\n", (char *)last->content);
-	//rotate(&list);
-	//reverse(&list);
-	last = ft_lstlast(list);
-	printf("first despues %s\n", (char *)list->content);
-	printf("last despues %s\n", (char *)last->content);
-	return (0);
-}*/
