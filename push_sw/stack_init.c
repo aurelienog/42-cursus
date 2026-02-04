@@ -58,17 +58,14 @@ static t_list	*init_stack_a(int size, char **numbers)
 	i = 0;
 	stack_a = NULL;
 	node = NULL;
-	while (i < size && numbers[i])
+	while (i < size)
 	{
 		num = ft_atoi(numbers[i]);
 		node = ft_lstnew(num);
 		if (!node)
 		{
-			if (stack_a)
-			{
 				ft_lstclear(&stack_a);
 				return (NULL);
-			}
 		}
 		ft_lstadd_back(&stack_a, node);
 		i++;
@@ -85,7 +82,10 @@ t_stacks	*init_stacks(int size, char **argv)
 		return (NULL);
 	stacks->a = init_stack_a(size, argv);
 	if (!stacks->a)
+	{
+		free(stacks);
 		return (NULL);
+	}
 	stacks->b = NULL;
 	return (stacks);
 }
