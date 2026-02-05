@@ -91,10 +91,10 @@ char	*newstrjoin(char *str1, char *str2)
 	char	*new;
 
 	if (!str1 || !str2)
-		return (free(str1), str1 = NULL, NULL);
+		return (NULL);
 	new = malloc((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
 	if (!new)
-		return (free(str1), str1 = NULL, NULL);
+		return (NULL);
 	i = 0;
 	while (str1[i])
 	{
@@ -103,10 +103,7 @@ char	*newstrjoin(char *str1, char *str2)
 	}
 	j = 0;
 	while (str2[j])
-	{
-		new[i] = str2[j++];
-		i++;
-	}
+		new[i++] = str2[j++];
 	new[i] = '\0';
 	if (str1)
 		free(str1);

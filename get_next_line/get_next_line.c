@@ -40,7 +40,7 @@ static char	*extract_line(char *str)
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\n' || str[i] != '\0')
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	if (str[i] == '\n')
 		i++;
@@ -50,30 +50,38 @@ static char	*extract_line(char *str)
 	return (line);
 }
 
-char	*get_next_line(int fd)
+static char	*read_and_join(int fd, char *readed)
 {
-	static char	*readed;
-	char		*line;
 	char		buffer[BUFFER_SIZE + 1];
 	int			bytesread;
+	char		*temp;
 
-	if (!readed)
-		readed = ft_strdup("");
-	bytesread = read(fd, buffer, BUFFER_SIZE);
-	if (bytesread > 0)
-	{
-		buffer[bytesread] = '\0';
-		readed = newstrjoin(readed, buffer);
-	}
-	while (!ft_strchr((const char *)readed, '\n') && bytesread > 0)
+	bytesread = 1;
+	while (!ft_strchr(readed, '\n') && bytesread > 0)
 	{
 		bytesread = read(fd, buffer, BUFFER_SIZE);
 		if (bytesread <= 0)
 			break ;
 		buffer[bytesread] = '\0';
-		readed = newstrjoin(readed, buffer);
+		temp = newstrjoin(readed, buffer);
+		if (!temp)
+			return (free(readed), readed = NULL, NULL);
+		readed = temp;
 	}
-	if (bytesread <= 0 && readed && *readed == '\0')
+	return (readed);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*readed;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	if (!readed)
+		readed = ft_strdup("");
+	readed = read_and_join(fd, readed);
+	if (!readed || *readed == '\0')
 	{
 		free(readed);
 		readed = NULL;
@@ -93,18 +101,17 @@ int	main(void)
 	
 	fd = open("test.txt", O_RDONLY);
         if (fd == -1)
-                return (0);
+                return (1);
 	last_line = get_next_line(fd);
-	printf("%s", last_line);
 	if (!last_line)
 	{
 		return (0);
 	}
 	while(last_line)
 	{
+		printf("%s", last_line);
 		free(last_line);
 		last_line = get_next_line(fd);
-		printf("%s", last_line);
 	}
 	close(fd);
 	return (0);
