@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 10:00:24 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/04 11:47:09 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/05 09:42:02 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	ss(t_stacks *stacks)
 
 void	pa(t_stacks *stacks)
 {
-	push(&stacks->a, &stacks->b);
+	push(&stacks->b, &stacks->a);
 	write(1, "pa\n", 3);
 }
 
 void	pb(t_stacks *stacks)
 {
-	push(&stacks->b, &stacks->a);
+	push(&stacks->a, &stacks->b);
 	write(1, "pb\n", 3);
 }

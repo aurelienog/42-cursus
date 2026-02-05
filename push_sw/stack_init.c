@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 15:09:03 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/04 17:41:00 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/05 09:39:11 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_atoi(char *str)
 
 static t_list	*init_stack_a(int size, char **numbers)
 {
-	int	i;
+	int		i;
 	int		num;
 	t_list	*node;
 	t_list	*stack_a;
@@ -64,8 +64,8 @@ static t_list	*init_stack_a(int size, char **numbers)
 		node = ft_lstnew(num);
 		if (!node)
 		{
-				ft_lstclear(&stack_a);
-				return (NULL);
+			ft_lstclear(&stack_a);
+			return (NULL);
 		}
 		ft_lstadd_back(&stack_a, node);
 		i++;

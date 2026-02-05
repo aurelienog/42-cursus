@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:38:04 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/04 09:41:44 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/05 09:45:01 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	swap(t_list **stack)
 	(*stack) = temp_b;
 }
 
-void	push(t_list **dest, t_list **src)
+void	push(t_list **src, t_list **dest)
 {
 	t_list	*temp;
 

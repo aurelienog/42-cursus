@@ -6,20 +6,21 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:49:34 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/04 17:43:33 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/04 18:01:38 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
 void	push_swap(int size, char **argv)
 {
-	t_stacks	*stacks;
-	t_list		*temp;
-	//struc para opciones?
-	int	i;
+	t_stacks		*stacks;
+	t_list			*temp;
+	int				i;
+
 	stacks = init_stacks(size, argv);
-	temp = printf("",)
+	temp = stacks->a;
 	if (!stacks)
 		return ;
 	i = 0;
@@ -33,7 +34,7 @@ void	push_swap(int size, char **argv)
 	ft_lstclear(&stacks->b);
 	free(stacks);
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
@@ -53,4 +54,4 @@ int	main(void)
 	free(ptr);
 	printf("end");
 	return (0);
-}
+}*/
