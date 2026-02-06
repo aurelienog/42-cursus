@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 10:27:07 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/06 13:00:49 by aunoguei         ###   ########.fr       */
+/*   Created: 2026/02/06 12:20:53 by aunoguei          #+#    #+#             */
+/*   Updated: 2026/02/06 13:48:34 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-static char	*newsubstr(char *readed)
+char	*newsubstr(char *readed)
 {
 	size_t	i;
 	char	*remainder;
@@ -34,7 +34,7 @@ static char	*newsubstr(char *readed)
 	return (remainder);
 }
 
-static char	*extract_line(char *str)
+char	*extract_line(char *str)
 {
 	size_t	i;
 	char	*line;
@@ -52,7 +52,7 @@ static char	*extract_line(char *str)
 	return (line);
 }
 
-static char	*read_and_join(int fd, char *readed)
+char	*read_and_join(int fd, char *readed)
 {
 	char		*buffer;
 	int			bytesread;
@@ -81,49 +81,23 @@ static char	*read_and_join(int fd, char *readed)
 
 char	*get_next_line(int fd)
 {
-	static char	*readed;
+	static char	*readed[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
-	if (!readed)
-		readed = ft_strdup("");
-	readed = read_and_join(fd, readed);
-	if (!readed)
+	if (!readed[fd])
+		readed[fd] = ft_strdup("");
+	readed[fd] = read_and_join(fd, readed[fd]);
+	if (!readed[fd])
 		return (NULL);
-	if (*readed == '\0')
+	if (*readed[fd] == '\0')
 	{
-		free(readed);
-		readed = NULL;
+		free(readed[fd]);
+		readed[fd] = NULL;
 		return (NULL);
 	}
-	line = extract_line(readed);
-	readed = newsubstr(readed);
+	line = extract_line(readed[fd]);
+	readed[fd] = newsubstr(readed[fd]);
 	return (line);
 }
-/*
-#include <stdio.h>
-#include <fcntl.h>
-
-int	main(void)
-{
-	char	*last_line;
-	int	fd;
-	
-	fd = open("test.txt", O_RDONLY);
-        if (fd == -1)
-                return (0);
-	last_line = get_next_line(fd);
-	if (!last_line)
-	{
-		return (0);
-	}
-	while(last_line)
-	{
-		printf("%s", last_line);
-		free(last_line);
-		last_line = get_next_line(fd);
-	}
-	close(fd);
-	return (0);
-}*/

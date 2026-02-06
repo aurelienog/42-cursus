@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
+/*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/29 10:28:20 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/06 12:31:55 by aunoguei         ###   ########.fr       */
+/*   Created: 2026/02/06 13:30:50 by aunoguei          #+#    #+#             */
+/*   Updated: 2026/02/06 13:38:46 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
