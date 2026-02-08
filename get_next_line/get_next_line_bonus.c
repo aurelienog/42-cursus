@@ -66,13 +66,13 @@ char	*read_and_join(int fd, char *readed)
 	{
 		bytesread = read(fd, buffer, BUFFER_SIZE);
 		if (bytesread < 0)
-			return (free(readed), NULL);
+			return (free(readed), free(buffer), NULL);
 		if (bytesread == 0)
 			break ;
 		buffer[bytesread] = '\0';
 		temp = newstrjoin(readed, buffer);
 		if (!temp)
-			return (NULL);
+			return (free(buffer), NULL);
 		readed = temp;
 	}
 	free(buffer);
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 	static char	*readed[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= OPEN_MAX)
 		return (NULL);
 	if (!readed[fd])
 		readed[fd] = ft_strdup("");
