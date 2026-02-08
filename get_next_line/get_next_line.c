@@ -66,13 +66,16 @@ static char	*read_and_join(int fd, char *readed)
 	{
 		bytesread = read(fd, buffer, BUFFER_SIZE);
 		if (bytesread < 0)
-			return (free(readed), NULL);
+			return (free(readed), free(buffer), NULL);
 		if (bytesread == 0)
 			break ;
 		buffer[bytesread] = '\0';
 		temp = newstrjoin(readed, buffer);
 		if (!temp)
+		{
+			free(buffer);
 			return (NULL);
+		}
 		readed = temp;
 	}
 	free(buffer);
