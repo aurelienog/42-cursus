@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/06 12:20:53 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/09 10:00:31 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:24:30 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,4 @@ char	*get_next_line(int fd)
 	readed[fd] = newsubstr(readed[fd]);
 	return (line);
 }
+//main

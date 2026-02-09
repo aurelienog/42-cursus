@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:27:07 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/09 09:59:51 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/09 18:24:13 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 	readed = newsubstr(readed);
 	return (line);
 }
-
+/*
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -126,4 +126,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}
+}*/
