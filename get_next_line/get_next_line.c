@@ -6,13 +6,13 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:27:07 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/06 13:00:49 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/09 09:59:51 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*newsubstr(char *readed)
+char	*newsubstr(char *readed)
 {
 	size_t	i;
 	char	*remainder;
@@ -34,7 +34,7 @@ static char	*newsubstr(char *readed)
 	return (remainder);
 }
 
-static char	*extract_line(char *str)
+char	*extract_line(char *str)
 {
 	size_t	i;
 	char	*line;
@@ -52,7 +52,7 @@ static char	*extract_line(char *str)
 	return (line);
 }
 
-static char	*read_and_join(int fd, char *readed)
+char	*read_and_join(int fd, char *readed)
 {
 	char		*buffer;
 	int			bytesread;
@@ -72,10 +72,7 @@ static char	*read_and_join(int fd, char *readed)
 		buffer[bytesread] = '\0';
 		temp = newstrjoin(readed, buffer);
 		if (!temp)
-		{
-			free(buffer);
-			return (NULL);
-		}
+			return (free(buffer), NULL);
 		readed = temp;
 	}
 	free(buffer);
@@ -104,7 +101,7 @@ char	*get_next_line(int fd)
 	readed = newsubstr(readed);
 	return (line);
 }
-/*
+
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -129,4 +126,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}*/
+}
