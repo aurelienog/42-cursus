@@ -1,3 +1,7 @@
+https://www.youtube.com/watch?v=Y95a-8oNqps
+https://www.youtube.com/watch?v=WaNLJf8xzC4
+
+
 Insertion sort
 Bucket sort?
  radix menos pasos o merge mas general
