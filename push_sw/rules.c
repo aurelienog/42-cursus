@@ -6,39 +6,16 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 16:38:04 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/05 09:45:01 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/11 13:08:18 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/*
-int	compute_disorder(char *stack)
-{
-	int	mistakes;
-	int	total_pairs;
-	t_list	*node;
 
-	node = stack->next;
-	mistakes = 0;
-	total_pairs = 0;
-	while (stack)
-	{
-		while (node)
-		{
-			if (stack->content > node->content)
-				mistakes++;
-			total_pairs++;
-			node = stack->next;
-		}
-		stack = stack->next;
-	}
-	return (mistakes / total_pairs);
-}
-*/
-void	swap(t_list **stack)
+void	swap(t_numbers_list **stack)
 {
-	t_list	*temp_a;
-	t_list	*temp_b;
+	t_numbers_list	*temp_a;
+	t_numbers_list	*temp_b;
 
 	if (!stack || !(*stack) || !((*stack)->next))
 		return ;
@@ -49,36 +26,36 @@ void	swap(t_list **stack)
 	(*stack) = temp_b;
 }
 
-void	push(t_list **src, t_list **dest)
+void	push(t_numbers_list **src, t_numbers_list **dest)
 {
-	t_list	*temp;
+	t_numbers_list	*temp;
 
 	if (!*src)
 		return ;
 	temp = (*src)->next;
-	ft_lstadd_front(dest, *src);
+	numbers_lstadd_front(dest, *src);
 	*src = temp;
 }
 
-void	rotate(t_list **stack)
+void	rotate(t_numbers_list **stack)
 {
-	t_list	*last;
-	t_list	*new_first;
+	t_numbers_list	*last;
+	t_numbers_list	*new_first;
 
 	if (!stack || !(*stack) || !((*stack)->next))
 		return ;
-	last = ft_lstlast(*stack);
+	last = numbers_lstlast(*stack);
 	new_first = (*stack)->next;
 	(*stack)->next = NULL;
 	last->next = *stack;
 	*stack = new_first;
 }
 
-void	reverse(t_list **stack)
+void	reverse(t_numbers_list **stack)
 {
-	t_list	*last;
-	t_list	*before_last;
-	t_list	*current;
+	t_numbers_list	*last;
+	t_numbers_list	*before_last;
+	t_numbers_list	*current;
 
 	if (!stack || !(*stack) || !((*stack)->next))
 		return ;
@@ -88,7 +65,7 @@ void	reverse(t_list **stack)
 	before_last = current;
 	last = current->next;
 	before_last->next = NULL;
-	ft_lstadd_front(stack, last);
+	numbers_lstadd_front(stack, last);
 }
 /*MAIN PARA PUSH
 #include <stdio.h>

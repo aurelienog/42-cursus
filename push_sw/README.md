@@ -1,17 +1,29 @@
-https://www.youtube.com/watch?v=Y95a-8oNqps
-https://www.youtube.com/watch?v=WaNLJf8xzC4
+*This project has been created as part of the 42 curriculum by aunoguei.*
 
+# PUSH SWAP
 
-Insertion sort
-Bucket sort?
- radix menos pasos o merge mas general
+## Description
 
-https://www.geeksforgeeks.org/search/?gq=Sorting%20LinkedIn%20list
+## Instructions
 
-https://web.mit.edu/1.124/LectureNotes/sorting.html
-
+## Resources
 https://www.bigocheatsheet.com/
+https://www.w3schools.com/dsa/dsa_algo_insertionsort.php
 
-https://www.baeldung.com/cs/efficiently-sorting-linked-lists
+linked list allows efficient insertion and deletion operations compared to arrays.
 
-https://tribhuvancode.medium.com/sorting-a-linked-list-in-ascending-order-50b22c8f5aee
+**Insertion Sort:**
+Approach:
+
+    Choose the second element in the array and place it in order with respect to the first element.
+    Choose the third element in the array and place it in order with respect to the first two elements.
+    Continue this process until done.
+
+Insertion sort is used in situations when the list is small or nearly sorted and as a subroutine in Bucket Sort.
+
+**Bucket sort**
+
+**Radix Sort LSD**
+
+
+Stability.  This is the ability of a sorting algorithm to preserve the relative order of equal keys in a file.

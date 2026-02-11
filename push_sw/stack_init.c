@@ -6,15 +6,15 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 15:09:03 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/05 09:39:11 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/11 14:02:43 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstclear(t_list **lst)
+void	clear_lst_numbers(t_numbers_list **lst)
 {
-	t_list	*temp;
+	t_numbers_list	*temp;
 
 	if (!lst)
 		return ;
@@ -26,34 +26,12 @@ void	ft_lstclear(t_list **lst)
 	}
 }
 
-int	ft_atoi(char *str)
+static t_numbers_list	*init_stack_a(int size, char **numbers)
 {
-	int	i;
-	int	sign;
-	int	number;
-
-	i = 0;
-	number = 0;
-	sign = 1;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign = -sign;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		number = number * 10 + str[i++] - '0';
-	}
-	return (number * sign);
-}
-
-static t_list	*init_stack_a(int size, char **numbers)
-{
-	int		i;
-	int		num;
-	t_list	*node;
-	t_list	*stack_a;
+	int				i;
+	int				num;
+	t_numbers_list	*node;
+	t_numbers_list	*stack_a;
 
 	i = 0;
 	stack_a = NULL;
@@ -61,13 +39,13 @@ static t_list	*init_stack_a(int size, char **numbers)
 	while (i < size)
 	{
 		num = ft_atoi(numbers[i]);
-		node = ft_lstnew(num);
+		node = numbers_lstnew(num);
 		if (!node)
 		{
-			ft_lstclear(&stack_a);
+			clear_lst_numbers(&stack_a);
 			return (NULL);
 		}
-		ft_lstadd_back(&stack_a, node);
+		numbers_lstadd_back(&stack_a, node);
 		i++;
 	}
 	return (stack_a);

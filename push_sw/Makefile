@@ -1,53 +1,36 @@
-NAME = libft.a
+NAME = push_swap
+
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-
-# ---------------- LIBFT ---------------- #
-
-LIBFT_SRC = \
-	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-	ft_toupper.c ft_tolower.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
-	ft_strchr.c ft_strrchr.c ft_strncmp.c ft_strnstr.c ft_strdup.c \
-	ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_strmapi.c \
-	ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-	ft_putnbr_fd.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
-	ft_memchr.c ft_memcmp.c ft_calloc.c ft_atoi.c ft_itoa.c \
-	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-	ft_lstmap.c
-
-# ---------------- PRINTF ---------------- #
-
-PRINTF_DIR = printf/
-
-PRINTF_SRC = \
-	$(PRINTF_DIR)ft_printf.c \
-	$(PRINTF_DIR)putnbr_hex.c \
-	$(PRINTF_DIR)ft_unsigned_putnbr_fd.c \
-	$(PRINTF_DIR)print_address.c
-
-SRC = $(LIBFT_SRC) $(PRINTF_SRC)
-
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 -I./includes
+LIB_A = ./libft/libft.a
+LIB_DIR = ./libft
+SRC = main.c push_swap.c rules.c list_utils.c stack_init.c operations.c rotate.c reverse.c input_validation.c input_validation_command.c input_convertion.c manager_input.c insertion_sort.c ./libft/libft.a 
 OBJ = $(SRC:.c=.o)
+HEADERS = push_swap.h ./libft/libft.h
 
-# ---------------------------------------- #
+all: $(LIB_A) $(NAME)
 
-all: $(NAME)
+$(LIB_A) :
+	$(MAKE) -C $(LIB_DIR) all -s
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(HEADERS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.c
+%.o: %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	$(MAKE) -C $(LIB_DIR) clean -s
 	rm -f $(OBJ)
 
+
 fclean: clean
+	$(MAKE) -C $(LIB_DIR) fclean -s
 	rm -f $(NAME)
+
 
 re: fclean all
 
-.PHONY: all clean fclean re
 
+.PHONY: all clean fclean re

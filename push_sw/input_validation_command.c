@@ -6,23 +6,23 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 14:32:47 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/04 14:39:59 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/10 16:37:37 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
 #include "push_swap.h"
 
 int	ft_is_command(char *str)
 {
-	if (ft_strncmp(str, "--simple", 8) == 0)
+	if (ft_strncmp(str, "--simple", 8) == 0 && ft_strlen(str) == 8)
 		return (1);
-	else if (ft_strncmp(str, "--medium", 8) == 0)
+	else if (ft_strncmp(str, "--medium", 8) == 0 && ft_strlen(str) == 8)
 		return (1);
-	else if (ft_strncmp(str, "--complex", 9) == 0)
+	else if (ft_strncmp(str, "--complex", 9) == 0 && ft_strlen(str) == 9)
 		return (1);
-	else if (ft_strncmp(str, "--adaptative", 12) == 0)
+	else if (ft_strncmp(str, "--adaptative", 12) == 0 && ft_strlen(str) == 12)
 		return (1);
-	else if (ft_strncmp(str, "--bench", 7) == 0)
+	else if (ft_strncmp(str, "--bench", 7) == 0 && ft_strlen(str) == 7)
 		return (1);
 	else
 		return (0);

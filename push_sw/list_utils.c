@@ -6,13 +6,13 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 17:54:50 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/04 09:46:57 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:31:38 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	numbers_lstadd_front(t_numbers_list **lst, t_numbers_list *new)
 {
 	if (!lst || !new)
 		return ;
@@ -20,9 +20,9 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	*lst = new;
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	numbers_lstadd_back(t_numbers_list **lst, t_numbers_list *new)
 {
-	t_list	*last;
+	t_numbers_list	*last;
 
 	if (!lst || !new)
 		return ;
@@ -32,15 +32,15 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 		return ;
 	}
-	last = ft_lstlast(*lst);
+	last = numbers_lstlast(*lst);
 	last->next = new;
 }
 
-t_list	*ft_lstnew(int content)
+t_numbers_list	*numbers_lstnew(int content)
 {
-	t_list	*ptr;
+	t_numbers_list	*ptr;
 
-	ptr = malloc(sizeof(t_list));
+	ptr = malloc(sizeof(t_numbers_list));
 	if (!ptr)
 		return (NULL);
 	ptr->content = content;
@@ -48,7 +48,7 @@ t_list	*ft_lstnew(int content)
 	return (ptr);
 }
 
-t_list	*ft_lstlast(t_list *lst)
+t_numbers_list	*numbers_lstlast(t_numbers_list *lst)
 {
 	if (!lst)
 		return (NULL);
