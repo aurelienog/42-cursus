@@ -15,11 +15,16 @@ linked list allows efficient insertion and deletion operations compared to array
 **Insertion Sort:**
 Approach:
 
-    Choose the second element in the array and place it in order with respect to the first element.
-    Choose the third element in the array and place it in order with respect to the first two elements.
-    Continue this process until done.
+
+For each key in A:
+If B is empty → pb
+If key > max(B) → rotate to maximum
+If key < min(B) → rotate to minimum
+If it's in between → find a suitable interval
 
 Insertion sort is used in situations when the list is small or nearly sorted and as a subroutine in Bucket Sort.
+
+
 
 **Bucket sort**
 
