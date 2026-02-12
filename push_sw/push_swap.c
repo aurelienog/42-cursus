@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:49:34 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/11 18:33:49 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/12 10:49:53 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	push_swap(int argc, char **argv)
 		free(commands.strategy);
 		return ;
 	}
+
 	insertion_sort(stacks);
 //	free(strategy);
 	while (stacks->a)

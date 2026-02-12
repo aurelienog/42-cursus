@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:01:24 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/11 18:33:39 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/12 15:18:47 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		ft_is_command_valid(char *str1, char *str2);
 
 float		compute_disorder(int size, t_numbers_list *stack);
 void		push_swap(int size, char **argv);
-void		insertion_sort(t_stacks *stack);
 t_stacks	*init_stacks(int size, char **argv);
 /* ************************************************************************** */
 /*                             WRAPPERS FUNCTIONS                             */
@@ -62,6 +61,10 @@ void		rrr(t_stacks *stacks);
 /* ************************************************************************** */
 /*                             OPERATIONS FUNCTIONS                           */
 /* ************************************************************************** */
+
+void	sort_bucket(t_stacks *stacks);
+void		insertion_sort(t_stacks *stack);
+
 
 /* ************************************************************************** */
 /*                             STRINGS FUNCTIONS                              */
