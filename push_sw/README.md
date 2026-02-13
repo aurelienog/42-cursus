@@ -30,5 +30,12 @@ Insertion sort is used in situations when the list is small or nearly sorted and
 
 **Radix Sort LSD**
 
+**Adaptivo**
+if (size <= 5)
+    small_sort();
+Push the two smallest ones to B.
+Sort the remaining three with `sort_three`.
+Repeat `pa pa`.
+
 
 Stability.  This is the ability of a sorting algorithm to preserve the relative order of equal keys in a file.

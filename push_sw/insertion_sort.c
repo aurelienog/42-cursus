@@ -69,6 +69,7 @@ static	int	count_rotations(t_stacks *stacks)
 static void	rotate_b_to_place_key(t_stacks *stacks, int rotations)
 {
 	int		i;
+	int		reverse;
 
 	if (rotations == -1)
 	{
@@ -84,12 +85,18 @@ static void	rotate_b_to_place_key(t_stacks *stacks, int rotations)
 	else
 	{
 		i = 0;
+		reverse = rotations;
 		while (i < rotations)
 		{
 			rb(stacks);
 			i++;
 		}
 		pb(stacks);
+		while (reverse > 0)
+		{
+			rrb(stacks);
+			reverse--;
+		}
 	}
 }
 
