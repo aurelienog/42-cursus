@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:19:19 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/13 17:03:01 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/13 17:20:05 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,10 @@ static	void	sort_three(t_stacks *stacks)
 
 static int	is_max(t_stacks *stacks)
 {
-	t_numbers_list	*node;
-	t_numbers_list	*max;
+	t_numbers_list	*key;
 
-	node = stacks->b;
-	max = stacks->b;
-	while (node)
-	{
-		if (node->content > max->content)
-			max = node;
-		node = node->next;
-	}
-	if (stacks->b == max)
+	key = stacks->a;
+	if (key->content > stacks->b->content)
 	{
 		ft_printf("ismax");
 		return (1);
@@ -61,12 +53,12 @@ static	int	count_rotations(t_stacks *stacks)
 
 	key = stacks->a;
 	current = stacks->b;
-	count = 1;
+	count = 0;
 	while (current->next)
 	{
 		if ((key->content < current->content)
 				&& (key->content > current->next->content))
-			return (count);
+			return (count + 1);
 		count++;
 		current = current->next;
 	}
