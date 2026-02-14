@@ -15,27 +15,15 @@ linked list allows efficient insertion and deletion operations compared to array
 **Insertion Sort:**
 Approach:
 
-
-For each key in A:
-If B is empty → pb
-If key > max(B) → rotate to maximum
-If key < min(B) → rotate to minimum
-If it's in between → find a suitable interval
+    Choose the second element in the array and place it in order with respect to the first element.
+    Choose the third element in the array and place it in order with respect to the first two elements.
+    Continue this process until done.
 
 Insertion sort is used in situations when the list is small or nearly sorted and as a subroutine in Bucket Sort.
-
-
 
 **Bucket sort**
 
 **Radix Sort LSD**
-
-**Adaptivo**
-if (size <= 5)
-    small_sort();
-Push the two smallest ones to B.
-Sort the remaining three with `sort_three`.
-Repeat `pa pa`.
 
 
 Stability.  This is the ability of a sorting algorithm to preserve the relative order of equal keys in a file.

@@ -6,7 +6,7 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 13:50:50 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/11 15:40:44 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/13 11:28:04 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_is_int(char *src)
 			return (0);
 		i++;
 	}
-	if ((ft_atoi(src) == 0) && (ft_strlen(src) != 1 && ft_strlen(src) != 2))
+	if ((ft_atoi(src) > INT_MAX) || (ft_atoi(src) < INT_MIN))
 		return (0);
 	return (1);
 }

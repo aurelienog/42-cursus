@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:49:34 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/12 10:49:53 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:10:40 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	free_input(char **input, int size, t_command commands)
 		size++;
 	while (i < (size + 1))
 	{
-		ft_printf("%s\n", input[i]);
 		free(input[i]);
 		i++;
 	}
@@ -81,7 +80,7 @@ void	push_swap(int argc, char **argv)
 		return ;
 	}
 
-	insertion_sort(stacks);
+	sort_bucket(stacks, size);
 //	free(strategy);
 	while (stacks->a)
 	{

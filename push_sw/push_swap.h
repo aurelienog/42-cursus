@@ -6,13 +6,14 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:01:24 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/12 15:18:47 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:10:28 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <limits.h>
 # include "./libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -62,8 +63,8 @@ void		rrr(t_stacks *stacks);
 /*                             OPERATIONS FUNCTIONS                           */
 /* ************************************************************************** */
 
-void	sort_bucket(t_stacks *stacks);
-void		insertion_sort(t_stacks *stack);
+void		sort_bucket(t_stacks *stacks, int size);
+void		insertion_sort(t_stacks *stack, int size);
 
 
 /* ************************************************************************** */
