@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:35:38 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/15 17:50:17 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/15 18:26:53 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,21 @@ static void	sort_three(t_stacks *stacks)
 	a = stacks->a->index;
 	b = stacks->a->next->index;
 	c = stacks->a->next->next->index;
-	if (a < b && b > c)
-	{
+	if (a < b && b > c && c < a)
 		rra(stacks);
-		if (stacks->a->index > stacks->a->next->index)
-			sa(stacks);
-	}
-	else if (a > b && b < c)
+	else if (a < b && b > c && c > a)
 	{
+		ra(stacks);
 		sa(stacks);
-		if (stacks->a->next->index > stacks->a->next->next->index)
-		{
-			ra(stacks);
+	}
+	else if (a > b && b < c && c < a)
+		sa(stacks);
+	else if (a > b && b < c && c > a)
+	{
 			sa(stacks);
 			rra(stacks);
-		}
 	}
-	else if (a > b && b > c)
+	else if (a > b && b > c && c < a)
 	{
 		sa(stacks);
 		rra(stacks);
