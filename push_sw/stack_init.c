@@ -6,48 +6,66 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 15:09:03 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/14 16:53:14 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/15 14:24:37 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	clear_lst_numbers(t_numbers_list **lst)
+static int	*copy_to_array(char **numbers, int size)
 {
-	t_numbers_list	*temp;
+	int	*copy;
+	int		i;
 
-	if (!lst)
-		return ;
-	while (*lst)
+	copy = malloc(size * sizeof(int));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < size)
 	{
-		temp = (*lst)->next;
-		free(*lst);
-		*lst = temp;
+		copy[i] = (int)ft_atoi(numbers[i]);
+		i++;
+	}
+	return (copy);
+}
+
+static void	add_index(t_numbers_list *stack_a, int *ordered, int size)
+{
+	int		i;
+	t_numbers_list	*node;
+
+	node = stack_a;
+	while(node)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (ordered[i] == node->content)
+			{
+				node->index = i;
+			}
+			i++;
+		}
+		node = node->next;
 	}
 }
-/*
-static int	assign_index(t_numbers_list *stack->a, char **numbers, int size)
+
+static int	assign_index(t_numbers_list *stack_a, char **numbers, int size)
 {
 	int	*ordered;
-	int	i;
-	int	*min;
-	int	*max;
 
 	ordered = copy_to_array(numbers, size);
 	if (!ordered)
 		return (0);
 	if (size < 100)
-		bubblesort(ordered);
+		bubblesort(ordered, size);
 	else
-	{
-		//definir min & max
-		find_extreme_values(ordered);
-		quicksort(ordered, min, max);
-	//assign index
+		quicksort(ordered, 0, size - 1);
+	add_index(stack_a, ordered, size);
 	free(ordered);
 	return (1);
 }
-*/
+
 static t_numbers_list	*init_stack_a(int size, char **numbers)
 {
 	int				i;
@@ -60,7 +78,7 @@ static t_numbers_list	*init_stack_a(int size, char **numbers)
 	node = NULL;
 	while (i < size)
 	{
-		num = ft_atoi(numbers[i]);
+		num = (int)ft_atoi(numbers[i]);
 		node = numbers_lstnew(num);
 		if (!node)
 		{
@@ -86,13 +104,12 @@ t_stacks	*init_stacks(int size, char **argv)
 		free(stacks);
 		return (NULL);
 	}
-	/*
-	//assign_index(stacks->a, size);
-	if (!assign_index(stacks->a, size))
+	assign_index(stacks->a, argv, size);
+	if (!assign_index(stacks->a, argv, size))
 	{
 		free(stacks);
 		return (NULL);
-	}*/
+	}
 	stacks->b = NULL;
 	return (stacks);
 }

@@ -6,28 +6,11 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:49:34 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/13 14:10:40 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/15 17:50:42 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	free_input(char **input, int size, t_command commands)
-{
-	int	i;
-
-	i = 0;
-	if (commands.bench == 1)
-		size++;
-	if (commands.strategy != NULL)
-		size++;
-	while (i < (size + 1))
-	{
-		free(input[i]);
-		i++;
-	}
-	free(input);
-}
 
 float	compute_disorder(int size, t_numbers_list *stack)
 {
@@ -79,16 +62,17 @@ void	push_swap(int argc, char **argv)
 		free(commands.strategy);
 		return ;
 	}
-
-	sort_bucket(stacks, size);
-//	free(strategy);
-	while (stacks->a)
+	adaptative_sort(stacks, size);
+//	insertion_sort(stacks, size);
+//	sort_bucket(stacks, size);
+	free(commands.strategy);
+/*	while (stacks->a)
 	{
 		ft_printf("%d\n", stacks->a->content);
 		stacks->a = stacks->a->next;
 	}
-	clear_lst_numbers(&stacks->a);
-	clear_lst_numbers(&stacks->b);
+*/	clear_lst_numbers(&stacks->a);
+	//clear_lst_numbers(&stacks->b);
 	free(stacks);
 }
 /*

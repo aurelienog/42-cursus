@@ -9,7 +9,7 @@
 ## Resources
 https://www.bigocheatsheet.com/
 https://www.w3schools.com/dsa/dsa_algo_insertionsort.php
-
+https://www.geeksforgeeks.org/dsa/implement-quicksort-with-first-element-as-pivot/
 linked list allows efficient insertion and deletion operations compared to arrays.
 
 **Insertion Sort:**

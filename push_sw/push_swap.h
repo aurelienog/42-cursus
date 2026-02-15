@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:01:24 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/13 14:10:28 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/15 17:04:24 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct t_command
 typedef struct s_numbers_list
 {
 	int				content;
+	int				index;
 	struct s_numbers_list	*next;
 }			t_numbers_list;
 
@@ -39,7 +40,6 @@ typedef struct s_stack
 
 int		ft_is_command(char *str);
 int		ft_is_command_valid(char *str1, char *str2);
-
 float		compute_disorder(int size, t_numbers_list *stack);
 void		push_swap(int size, char **argv);
 t_stacks	*init_stacks(int size, char **argv);
@@ -65,6 +65,9 @@ void		rrr(t_stacks *stacks);
 
 void		sort_bucket(t_stacks *stacks, int size);
 void		insertion_sort(t_stacks *stack, int size);
+void		adaptative_sort(t_stacks *stacks, int size);
+void		bubblesort(int *numbers, int size);
+void		quicksort(int *numbers, int low, int high);
 
 
 /* ************************************************************************** */
@@ -83,7 +86,8 @@ int	ft_is_int(char *src);
 char	**convert_input(int size, char **argv, int *size_final);
 char	**manage_input(int argc, char **argv, int *size);
 char	**extract_numbers(int *size, char **input);
-void	extract_commands(char **input, t_command *commands);
+void		extract_commands(char **input, t_command *commands);
+void		free_input(char **input, int size, t_command commands);
 
 /* ************************************************************************** */
 /*                             LIST FUNCTIONS                                 */

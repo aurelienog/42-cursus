@@ -6,7 +6,7 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 12:02:19 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/13 17:28:44 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/14 14:01:11 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ static int	square_root(long unsigned nb)
 	long unsigned	i;
 
 	i = 1;
-	while ((i * i) <= nb)
+	while (i <= nb / 2)
+	{
+		if (i * i == nb)
+			return (i);
 		i++;
-	return (i - 1);
+	}
+	return (0);
 }
 
 static int	is_bucket_empty(t_numbers_list *stacks_a, int bucket_min, int bucket_max, int size)
@@ -32,11 +36,11 @@ static int	is_bucket_empty(t_numbers_list *stacks_a, int bucket_min, int bucket_
 	while (i < size && temp->next != NULL)
 	{
 		if (temp->content >= bucket_min && temp->content < bucket_max)
-			return (1);
+			return (0);
 		i++;
 		temp = temp->next;
 	}
-	return (0);
+	return (1);
 }
 
 static void	rotate_a_push_b(t_stacks *stacks, int MIN, int bucket_size, int i, int size)
@@ -49,7 +53,7 @@ static void	rotate_a_push_b(t_stacks *stacks, int MIN, int bucket_size, int i, i
 	j = 0;
 	range_min = MIN + (bucket_size * i);
 	range_max = MIN + (bucket_size * (i + 1));
-	if (is_bucket_empty(stacks->a, range_min, range_max, size) != 1)
+	if (is_bucket_empty(stacks->a, range_min, range_max, size) == 1)
 		return ;
 	while (stacks->a->content >= range_min
 			&& stacks->a->content < range_max)
@@ -83,15 +87,13 @@ static void	organize_buckets(t_stacks *stacks, int MIN, int bucket_range, int i)
 	max_bucket = MIN + (bucket_range * (i + 1));
 	temp = stacks->a;
 	while (temp != NULL && temp->content < min_bucket)
-	{
 		temp = temp->next;
-	}
 	while (temp != NULL &&  temp->content < max_bucket)
 	{
 		size_bucket++;
 		temp = temp->next;
 	}
-	if (size_bucket == 0 || size_bucket == 1)
+	if (size_bucket == 0)
 		return;
 	insertion_sort(stacks, size_bucket);
 }
@@ -138,6 +140,6 @@ void	sort_bucket(t_stacks *stacks, int size)
 			MIN = comparaison->content;
 		comparaison = comparaison->next;
 	}
-	bucket_size = square_root(MAX - MIN);
+	bucket_size = square_root(size);
 	create_buckets(stacks, MIN, bucket_size, size);
 }	

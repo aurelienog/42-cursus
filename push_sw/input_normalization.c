@@ -6,29 +6,13 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:13:09 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/14 16:31:34 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/15 13:46:12 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-char	*copy_to_array(t_numbers_list **numbers, int size)
-{
-	char	*copy;
-	int	i;
 
-	copy = malloc(size * sizeof(int));
-	if (!copy)
-		return (NULL);
-	i = 0;
-	while (i < size)
-	{
-		copy[i] = ft_atoi(numbers[i]);
-		i++;
-	}
-	return (copy);
-}
-*/
+#include "push_swap.h"
 
-static void	swap(int *a, int *b)
+static void	num_swap(int *a, int *b)
 {
 	int	temp;
 
@@ -43,32 +27,50 @@ void	bubblesort(int *numbers, int size)
 	int	j;
 
 	i = 0;
-	while (i < size)
+	while (i < size - 1)
 	{
-		j = i + 1;
-		while(j < size)
+		j = 0;
+		while (j < size - i - 1)
 		{
-			if (numbers[i] > numbers[j])
-				swap(&numbers[i], &numbers[j]);
+			if (numbers[j] > numbers[j + 1])
+				num_swap(&numbers[j], &numbers[j + 1]);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	partition(int *numbers, int low, int high, int size)
+static int	partition(int *numbers, int low, int high)
 {
+	int	pivot;
+	int	i;
+	int	j;
+
+	pivot = numbers[low];
+	i = high;
+	j = high;
+	while (i > low)
+	{
+		if (numbers[i] > pivot)
+		{
+			num_swap(&numbers[i], &numbers[j]);
+			j--;
+		}
+		i--;
+	}
+	num_swap(&numbers[low], &numbers[j]);
+	return (j);
 }
 
-void	quicksort(int *numbers, int low, int high, int size)
+void	quicksort(int *numbers, int low, int high)
 {
 	int	pivot_index;
 
 	if (low < high)
 	{
-		pivot_index = partition(arr, low, high);
-		quickSort(arr, low, pivot_index - 1);
-		quickSort(arr, pivot_index + 1, high);
+		pivot_index = partition(numbers, low, high);
+		quicksort(numbers, low, pivot_index - 1);
+		quicksort(numbers, pivot_index + 1, high);
 	}
 }
 /*
@@ -79,7 +81,7 @@ int	main(void)
 	int	numbers[] = {5, 4 , 3, 1, 2, 0};
 
 	i = 0;
-	bubblesort(numbers, 6);
+	quicksort(numbers, 0, 5);
 	while(i < 6)
 	{
 		printf("%d", numbers[i]);
