@@ -12,25 +12,45 @@
 
 #include "push_swap.h"
 
-static int	is_max(t_stacks *stacks)
+static void	rotate_to_max(t_stacks *stacks)
 {
-	t_numbers_list	*key;
+	t_numbers_list	*node;
+	t_numbers_list	*max;
 
-	key = stacks->a;
-	if (key->index > stacks->b->index)
-		return (1);
-	return (0);
+	node = stacks->b;
+	max = stacks->b;
+	while (node)
+	{
+		if (node->index > max->index)
+			max = node;
+		node = node->next;
+	}
+	while (stacks->b != max)
+		rb(stacks);
 }
-
+/*
 static	int	count_rotations(t_stacks *stacks)
 {
 	t_numbers_list	*key;
 	t_numbers_list	*current;
+	t_numbers_list  *min;
+	t_numbers_list  *max;
 	int				count;
 
 	key = stacks->a;
 	current = stacks->b;
+	min = current;
+	max = current;
 	count = 0;
+	while (current)
+	{
+		if (current->index < min->index)
+			min = current;
+		if (current->index > max->index)
+			max = current;
+		current = current->next;
+	}
+	current = stacks->b;
 	while (current->next)
 	{
 		if ((key->index < current->index)
@@ -39,55 +59,77 @@ static	int	count_rotations(t_stacks *stacks)
 		count++;
 		current = current->next;
 	}
-	return (-1);
+	current = stacks->b;
+	count = 0;
+	if (key->index < min->index || key->index > max->index)
+	{
+		while(current)
+		{
+			if (current == max)
+				return (count + 1);
+			count++;
+			current = current->next;
+		}
+	}
+	return (0);
 }
+*/
+
+static int count_rotations(t_stacks *stacks)
+{
+    t_numbers_list *current;
+    int count = 0;
+    int key = stacks->a->index;
+
+    current = stacks->b;
+
+    while (current->next)
+    {
+        // CASO NORMAL
+        if (current->index > key
+            && current->next->index < key)
+            return (count + 1);
+
+        // CASO SALTO (max → min)
+        if (current->index < current->next->index)
+        {
+            if (key > current->index
+                || key < current->next->index)
+                return (count + 1);
+        }
+
+        current = current->next;
+        count++;
+    }
+
+    return (0);
+}
+
 
 static void	rotate_b_to_place_key(t_stacks *stacks, int rotations)
 {
 	int		i;
-	int		reverse;
 
-	if (rotations == -1)
+	i = 0;
+	while (i < rotations)
 	{
-		if (is_max(stacks))
-			pb(stacks);
-		else
-		{
-			pb(stacks);
-			rb(stacks);
-		}
+		rb(stacks);
+		i++;
 	}
-	else
-	{
-		i = 0;
-		reverse = rotations;
-		while (i < rotations)
-		{
-			rb(stacks);
-			i++;
-		}
-		pb(stacks);
-		while (reverse > 0)
-		{
-			rrb(stacks);
-			reverse--;
-		}
-	}
+	pb(stacks);
 }
 
 void	insertion_sort(t_stacks *stacks, int size)
 {
 	int	rotations;
-	int	i;
 		
 	pb(stacks);
-	i = 0;
-	while (stacks->a && size)
+	while (stacks->a && size--)
 	{
 		rotations = count_rotations(stacks);
 		rotate_b_to_place_key(stacks, rotations);
-		i++;
 	}
+	rotate_to_max(stacks);
 	while (stacks->b)
 		pa(stacks);
 }
