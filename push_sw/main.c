@@ -6,13 +6,13 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:52:05 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/10 12:04:02 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/17 11:51:56 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int     main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc < 2)
 		write (2, "Error\n", 6);

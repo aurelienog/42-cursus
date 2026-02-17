@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:49:34 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/15 17:50:42 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:22:56 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ float	compute_disorder(int size, t_numbers_list *stack)
 	}
 	return (mistakes / total_pairs);
 }
-
+#include <stdio.h>
 void	push_swap(int argc, char **argv)
 {
 	t_stacks	*stacks;
@@ -50,10 +50,10 @@ void	push_swap(int argc, char **argv)
 	int			size;
 
 	size = -1;
-	input = manage_input(argc, argv, &size);
+	commands.strategy = NULL;
+	input = manage_input(argc, argv, &size, &commands);
 	if (!input)
 		return ;
-	extract_commands(input, &commands);
 	numbers = extract_numbers(&size, input);
 	stacks = init_stacks(size, numbers);
 	free_input(input, size, commands);
@@ -62,17 +62,10 @@ void	push_swap(int argc, char **argv)
 		free(commands.strategy);
 		return ;
 	}
-	adaptative_sort(stacks, size);
-//	insertion_sort(stacks, size);
-//	sort_bucket(stacks, size);
+	select_algorithm(stacks, size, commands);
+//	select_algorythm(stacks, size, commands);
 	free(commands.strategy);
-/*	while (stacks->a)
-	{
-		ft_printf("%d\n", stacks->a->content);
-		stacks->a = stacks->a->next;
-	}
-*/	clear_lst_numbers(&stacks->a);
-	//clear_lst_numbers(&stacks->b);
+	clear_lst_numbers(&stacks->a);
 	free(stacks);
 }
 /*

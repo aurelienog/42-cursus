@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 12:14:27 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/11 10:20:09 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:39:29 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		ft_unsigned_putnbr_fd_print(unsigned int n, int fd);
  */
 int		ft_print_address_print(void *ptr, int fd);
 
+int		ft_printfloat_fd_print(double number, int fd);
 /* ************************************************************************** */
 /*                            STRING FUNCTIONS                                */
 /* ************************************************************************** */

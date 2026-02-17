@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 15:09:03 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/15 14:24:37 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/17 11:50:58 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	*copy_to_array(char **numbers, int size)
 {
 	int	*copy;
-	int		i;
+	int	i;
 
 	copy = malloc(size * sizeof(int));
 	if (!copy)
@@ -31,11 +31,11 @@ static int	*copy_to_array(char **numbers, int size)
 
 static void	add_index(t_numbers_list *stack_a, int *ordered, int size)
 {
-	int		i;
+	int				i;
 	t_numbers_list	*node;
 
 	node = stack_a;
-	while(node)
+	while (node)
 	{
 		i = 0;
 		while (i < size)

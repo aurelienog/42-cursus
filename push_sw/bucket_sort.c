@@ -5,141 +5,142 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 12:02:19 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/14 14:01:11 by aunoguei         ###   ########.fr       */
+/*   Created: 2026/02/14 17:41:26 by ppousser          #+#    #+#             */
+/*   Updated: 2026/02/16 14:50:58 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 static int	square_root(long unsigned nb)
 {
 	long unsigned	i;
 
 	i = 1;
-	while (i <= nb / 2)
-	{
-		if (i * i == nb)
-			return (i);
+	while ((i * i) <= nb)
 		i++;
-	}
-	return (0);
+	return (i - 1);
 }
 
-static int	is_bucket_empty(t_numbers_list *stacks_a, int bucket_min, int bucket_max, int size)
+int	is_bucket_needed(t_numbers_list *stacksa, int min_bucket, int max_bucket, int size)
 {
-	int			i;
 	t_numbers_list	*temp;
+	int	count;
+	int	i;
 
+	count = 0;
 	i = 0;
-	temp = stacks_a;
-	while (i < size && temp->next != NULL)
+	if (stacksa == NULL)
+		return (0);
+	temp = stacksa;
+	while (temp != NULL && i < size)
 	{
-		if (temp->content >= bucket_min && temp->content < bucket_max)
-			return (0);
-		i++;
+		if (temp->index >= min_bucket && temp->index < max_bucket)
+			count++;
 		temp = temp->next;
+		i++;
 	}
-	return (1);
+	return (count);
 }
 
-static void	rotate_a_push_b(t_stacks *stacks, int MIN, int bucket_size, int i, int size)
+void	create_next_bucket(t_stacks *stacks, int bucket_size, int i, int size)
 {
-//	t_numbers_list	*start;
-	int	range_min;
-	int	range_max;
-	int	j;
-
-	j = 0;
-	range_min = MIN + (bucket_size * i);
-	range_max = MIN + (bucket_size * (i + 1));
-	if (is_bucket_empty(stacks->a, range_min, range_max, size) == 1)
-		return ;
-	while (stacks->a->content >= range_min
-			&& stacks->a->content < range_max)
-	{
-		j++;
-		pb(stacks);
-	}
-//	start = stacks->a;
-	ra(stacks);
-	j++;
-	while (j <= size)
-	{
-		if (stacks->a->content >= range_min
-				&& stacks->a->content < range_max)
-			pb(stacks);
-		else
-			ra(stacks);
-		j++;
-	}
-}
-
-static void	organize_buckets(t_stacks *stacks, int MIN, int bucket_range, int i)
-{
-	int	size_bucket;
-	t_numbers_list	*temp;
 	int	max_bucket;
 	int	min_bucket;
+	int	count;
 
-	size_bucket = 0;
-	min_bucket = MIN + (bucket_range * i);
-	max_bucket = MIN + (bucket_range * (i + 1));
-	temp = stacks->a;
-	while (temp != NULL && temp->content < min_bucket)
-		temp = temp->next;
-	while (temp != NULL &&  temp->content < max_bucket)
+	min_bucket = bucket_size * i;
+	max_bucket = bucket_size * (i + 1);
+	count = is_bucket_needed(stacks->a, min_bucket, max_bucket, size);
+	while (count > 0)
 	{
-		size_bucket++;
-		temp = temp->next;
+		if (stacks->a->index >= min_bucket && stacks->a->index < max_bucket)
+		{
+			pb(stacks);
+			count--;
+		}
+		else
+			ra(stacks);
 	}
-	if (size_bucket == 0)
-		return;
-	insertion_sort(stacks, size_bucket);
 }
 
-static void	create_buckets(t_stacks *stacks, int MIN, int bucket_size, int size)
+/*void	place_maximum(t_stacks *stacks, int size)
+{
+	int	i;
+	int	count;
+	
+	i = 0;
+	count = 0;
+	while (stacks->b->index != (size - 1))
+	{
+		stacks->b = stacks->b->next;
+		count++;
+	}
+	pa(stacks);
+	while (i < count)
+	{
+		rrb(stacks);
+		i++;
+	}
+}*/
+
+void	sort_buckets(t_stacks *stacks)
+{
+	int	count_ra;
+
+	count_ra = 0;
+//	place_maximum(stacks, size);
+	pa(stacks);
+	while (stacks->b)
+	{
+		if (stacks->a->index > stacks->b->index)
+			pa(stacks);
+		else
+		{
+			while (stacks->a->index < stacks->b->index)
+			{
+				ra(stacks);
+				count_ra++;
+			}
+			pa(stacks);
+			while (count_ra > 0)
+			{
+				rra(stacks);
+				count_ra--;
+			}
+		}
+	}
+}
+static void	create_buckets(t_stacks *stacks, int bucket_size, int size)
 {
 	int	i;
 
 	i = 0;
-	while (i <= bucket_size)
+	while (i < bucket_size - 1)
 	{
-		rotate_a_push_b(stacks, MIN, bucket_size, i, size);
+		create_next_bucket(stacks, bucket_size, i, size);
 		i++;
 	}
-	while (stacks->b != NULL)
-		pa(stacks);
-	i = 0;
-	while (i <= bucket_size + 1)
+	while (stacks->a)
 	{
-		organize_buckets(stacks, MIN, bucket_size, i);
-		i++;
+		if (stacks->a->index == size - 1)
+		{
+			if(stacks->a->next != NULL)
+			{
+				ra(stacks);
+			}
+			else
+				return ;
+		}
+		pb(stacks);
 	}
-	if (stacks->a->content > stacks->a->next->content)
-		ra(stacks);
 }
 
-
-void	sort_bucket(t_stacks *stacks, int size)
+void	bucket_sort(t_stacks *stacks, int size)
 {
 	int	bucket_size;
-	int	MAX;
-	int	MIN;
-	t_numbers_list	*comparaison;
 
-	
-	MAX = stacks->a->content;
-	MIN = stacks->a->content;
-	comparaison = stacks->a->next;
-	while(comparaison != NULL)
-	{
-		if (MAX < comparaison->content)
-			MAX = comparaison->content;
-		if (MIN > comparaison->content)
-			MIN = comparaison->content;
-		comparaison = comparaison->next;
-	}
 	bucket_size = square_root(size);
-	create_buckets(stacks, MIN, bucket_size, size);
-}	
+	create_buckets(stacks, bucket_size, size);
+	sort_buckets(stacks);
+}

@@ -1,12 +1,9 @@
 NAME = libftprintf.a
 
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-
-
-SRC = putnbr_hex.c ft_putnbr_fd.c ft_putstr_fd.c ft_strchr.c ft_putchar_fd.c ft_printf.c ft_unsigned_putnbr_fd.c print_address.c
+SRC = ft_putfloat_fd_print.c putnbr_hex.c ft_putnbr_fd.c ft_putstr_fd.c ft_strchr.c ft_putchar_fd.c ft_printf.c ft_unsigned_putnbr_fd.c print_address.c
 OBJ = $(SRC:.c=.o)
 
 

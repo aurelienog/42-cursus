@@ -6,7 +6,7 @@
 /*   By: aunoguei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:26:33 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/11 10:30:47 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:46:29 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int	dispatch(char c, va_list *args)
 		return (ft_unsigned_putnbr_fd_print(va_arg(*args, unsigned int), 1));
 	else if (c == '%')
 		return (ft_putchar_fd_print('%', 1));
+	else if (c == 'f')
+		return (ft_printfloat_fd_print((va_arg(*args, double)), 1));
 	return (0);
 }
 
@@ -44,7 +46,7 @@ int	ft_printf(const char *format, ...)
 	int			count;
 
 	va_start(args, format);
-	specifiers = "cspdiuxX%";
+	specifiers = "cspdiuxXf%";
 	i = 0;
 	count = 0;
 	while (format[i])

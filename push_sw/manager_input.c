@@ -6,34 +6,29 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 10:31:34 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/11 16:19:19 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:25:52 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	extract_commands(char **input, t_command *commands)
+int	extract_commands(char *input, t_command *commands)
 {
 	commands->bench = 0;
 	commands->strategy = NULL;
-	if (ft_is_int(input[1]) == 1)
-		return ;
-	if (ft_strncmp(input[1], "--bench", 7) == 0)
+	if (ft_strncmp(input, "--bench", 7) == 0)
 	{
-		commands->bench = 1;
-		if (ft_is_int(input[2]) != 1)
-		{
-			commands->strategy = ft_strdup(input[2]);
-			if (!commands->strategy)
-				return ;
-		}
+		commands->bench = commands->bench + 1;
+		if (commands->bench != 1)
+			return (0);
 	}
 	else
 	{
-		commands->strategy = ft_strdup(input[1]);
-		if (ft_is_int(input[2]) != 1)
-			commands->bench = 1;
+		if (commands->strategy != NULL)
+			return (0);
+		commands->strategy = ft_strdup(input);
 	}
+	return (1);
 }
 
 char	**extract_numbers(int *size, char **input)
@@ -44,7 +39,7 @@ char	**extract_numbers(int *size, char **input)
 
 	i = 0;
 	j = 0;
-	while (i < 3 && ft_is_int(input[i]) != 1)
+	while (input[i] != NULL && ft_is_str_int(input[i]) != 1)
 	{
 		*size = *size - 1;
 		i++;
@@ -62,7 +57,7 @@ char	**extract_numbers(int *size, char **input)
 }
 		
 
-char	**manage_input(int argc, char **argv, int *size)
+char	**manage_input(int argc, char **argv, int *size, t_command *commands)
 {
 	char	**res_final;
 	int		i;
@@ -72,7 +67,7 @@ char	**manage_input(int argc, char **argv, int *size)
 	res_final = (convert_input(argc, argv, size));
 	if (!res_final)
 		return (NULL);
-	if (ft_is_input_valid(res_final) != 1)
+	if (ft_is_input_valid(res_final, commands) == 0)
 	{
 		while (i < *size)
 		{

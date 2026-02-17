@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   adaptative.c                                       :+:      :+:    :+:   */
+/*   adaptive_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 15:35:38 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/15 18:26:53 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:57:47 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,52 @@ static void	sort_three(t_stacks *stacks)
 		rra(stacks);
 	else if (a < b && b > c && c > a)
 	{
-		ra(stacks);
 		sa(stacks);
+		ra(stacks);
 	}
 	else if (a > b && b < c && c < a)
-		sa(stacks);
+		ra(stacks);
 	else if (a > b && b < c && c > a)
-	{
-			sa(stacks);
-			rra(stacks);
-	}
+		sa(stacks);
 	else if (a > b && b > c && c < a)
 	{
 		sa(stacks);
 		rra(stacks);
 	}
 }
-/*
+
 static void	sort_five(t_stacks *stacks, int size)
 {
+	while (stacks->a)
+	{
+		if (stacks->a->index == 0)
+		{
+			pb(stacks);
+			break ;
+		}
+		ra(stacks);
+	}
+	if (size != 4)
+	{
+		while (stacks->a)
+		{
+			if (stacks->a->index == 1)
+			{
+				pb(stacks);
+				break ;
+			}
+			ra(stacks);
+		}
+	}
 	sort_three(stacks);
+	while (stacks->b)
+		pa(stacks);
 }
-*/
-void	adaptative_sort(t_stacks *stacks, int size)
+
+void	adaptive_sort(t_stacks *stacks, int size, float disorder)
 {
 	if (size < 2)
-		return;
+		return ;
 	else if (size == 2)
 	{
 		if (stacks->a->index > stacks->a->next->index)
@@ -59,13 +79,12 @@ void	adaptative_sort(t_stacks *stacks, int size)
 	}
 	else if (size == 3)
 		sort_three(stacks);
-/*	else if (size == 4 || size == 5)
+	else if (size == 4 || size == 5)
 		sort_five(stacks, size);
-	else if ()
-		insertion_sort()
-	else if ()
-		bucket_sort();
-	else if ()
-		radix_lsm();	
-*/
+	else if (disorder < 0.2)
+		insertion_sort(stacks);
+	else if (disorder < 0.5)
+		bucket_sort(stacks, size);
+	else
+		radix_sort(stacks, size);
 }
