@@ -284,7 +284,7 @@ char		*ft_itoa(int n);
  * @param - format: The string to output
  * @return - the number of bytes printed
  */
-int			ft_printf(const char *format, ...);
+int			ft_printf(int fd, const char *format, ...);
 
 /** ft_putchar_fd - Outputs the character ’c’ to the specified file descriptor
  * @param - c: The character to output

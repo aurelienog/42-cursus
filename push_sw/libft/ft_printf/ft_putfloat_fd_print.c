@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 14:12:33 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/17 18:02:29 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/18 15:24:41 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_printfloat_fd_print(double number, int fd)
 	count = 0;
 	num = (int)number;
 	count += ft_putnbr_fd_print(num, fd);
-	count += write(fd, ",", 1);
+	count += write(fd, ".", 1);
 	count += print_decimal(number, fd);
 	return (count);
 }

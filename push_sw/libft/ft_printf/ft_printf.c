@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-static int	dispatch(char c, va_list *args)
+static int	dispatch(int fd, char c, va_list *args)
 {
 	if (c == 'c')
-		return (ft_putchar_fd_print((va_arg(*args, int)), 1));
+		return (ft_putchar_fd_print((va_arg(*args, int)), fd));
 	else if (c == 's')
-		return (ft_putstr_fd_print((char *)(va_arg(*args, char *)), 1));
+		return (ft_putstr_fd_print((char *)(va_arg(*args, char *)), fd));
 	else if (c == 'i' || c == 'd')
-		return (ft_putnbr_fd_print((va_arg(*args, int)), 1));
+		return (ft_putnbr_fd_print((va_arg(*args, int)), fd));
 	else if (c == 'x')
 		return (ft_putnbr_hex_print(va_arg(*args, unsigned int),
 				"0123456789abcdef"));
@@ -27,17 +27,17 @@ static int	dispatch(char c, va_list *args)
 		return (ft_putnbr_hex_print(va_arg(*args, unsigned int),
 				"0123456789ABCDEF"));
 	else if (c == 'p')
-		return (ft_print_address_print(va_arg(*args, void *), 1));
+		return (ft_print_address_print(va_arg(*args, void *), fd));
 	else if (c == 'u')
-		return (ft_unsigned_putnbr_fd_print(va_arg(*args, unsigned int), 1));
+		return (ft_unsigned_putnbr_fd_print(va_arg(*args, unsigned int), fd));
 	else if (c == '%')
-		return (ft_putchar_fd_print('%', 1));
+		return (ft_putchar_fd_print('%', fd));
 	else if (c == 'f')
-		return (ft_printfloat_fd_print((va_arg(*args, double)), 1));
+		return (ft_printfloat_fd_print((va_arg(*args, double)), fd));
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(int fd, const char *format, ...)
 {
 	size_t		i;
 	char		*conversion;
@@ -54,11 +54,11 @@ int	ft_printf(const char *format, ...)
 		conversion = ft_strchr_print(specifiers, (int)format[i + 1]);
 		if (format[i] == '%' && conversion)
 		{
-			count += dispatch(conversion[0], &args);
+			count += dispatch(fd, conversion[0], &args);
 			i++;
 		}
 		else
-			count += ft_putchar_fd_print((char)format[i], 1);
+			count += ft_putchar_fd_print((char)format[i], fd);
 		i++;
 	}
 	va_end(args);

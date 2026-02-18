@@ -25,7 +25,7 @@
  * @param - format: The string to output
  * @return - the number of bytes printed
  */
-int		ft_printf(const char *format, ...);
+int		ft_printf(int fd, const char *format, ...);
 
 /** ft_putstr_fd - Outputs the string ’s’ to the given file descriptor
  * @param - s: The string to output.

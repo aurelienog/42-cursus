@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:49:34 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/17 17:22:56 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/18 13:45:21 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ float	compute_disorder(int size, t_numbers_list *stack)
 	}
 	return (mistakes / total_pairs);
 }
-#include <stdio.h>
+
 void	push_swap(int argc, char **argv)
 {
 	t_stacks	*stacks;
@@ -50,23 +50,23 @@ void	push_swap(int argc, char **argv)
 	int			size;
 
 	size = -1;
+	commands.bench = 0;
 	commands.strategy = NULL;
 	input = manage_input(argc, argv, &size, &commands);
 	if (!input)
+	{
+		free(commands.strategy);
 		return ;
-	numbers = extract_numbers(&size, input);
+	}
+	numbers = extract_numbers(&size, input, commands);
 	stacks = init_stacks(size, numbers);
-	free_input(input, size, commands);
 	if (!stacks)
 	{
 		free(commands.strategy);
 		return ;
 	}
 	select_algorithm(stacks, size, commands);
-//	select_algorythm(stacks, size, commands);
-	free(commands.strategy);
-	clear_lst_numbers(&stacks->a);
-	free(stacks);
+	clear_all(&stacks->a, &commands);
 }
 /*
 #include <stdio.h>

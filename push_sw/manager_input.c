@@ -6,7 +6,7 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 10:31:34 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/17 15:25:52 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/18 16:08:39 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	extract_commands(char *input, t_command *commands)
 {
-	commands->bench = 0;
-	commands->strategy = NULL;
 	if (ft_strncmp(input, "--bench", 7) == 0)
 	{
 		commands->bench = commands->bench + 1;
@@ -31,31 +29,48 @@ int	extract_commands(char *input, t_command *commands)
 	return (1);
 }
 
-char	**extract_numbers(int *size, char **input)
+int	calcul_size_numb(char **input)
 {
 	int	i;
-	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (input[i])
+	{
+		if (ft_is_str_int(input[i]) != 1)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+char	**extract_numbers(int *size, char **input, t_command commands)
+{
+	int		i;
+	int		j;
 	char	**res;
 
 	i = 0;
 	j = 0;
-	while (input[i] != NULL && ft_is_str_int(input[i]) != 1)
-	{
-		*size = *size - 1;
-		i++;
-	}
+	*size = *size - calcul_size_numb(input);
+	if (*size == 0)
+		write (1, "Error\n", 6);
 	res = malloc ((*size + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);
-	while (j < *size)
+	while (input[i])
 	{
-		res[j] = ft_strdup(input[i]);
+		if (ft_is_str_int(input[i]) == 1)
+		{
+			res[j] = ft_strdup(input[i]);
+			j++;
+		}
 		i++;
-		j++;
 	}
+	free_input(input, *size, commands);
 	return (res);
 }
-		
 
 char	**manage_input(int argc, char **argv, int *size, t_command *commands)
 {
@@ -79,4 +94,22 @@ char	**manage_input(int argc, char **argv, int *size, t_command *commands)
 		res_final = NULL;
 	}
 	return (res_final);
+}
+
+int	is_bucket_needed(t_numbers_list *stacksa, int min_bucket, int max_bucket)
+{
+	t_numbers_list	*temp;
+	int				count;
+
+	count = 0;
+	if (stacksa == NULL)
+		return (0);
+	temp = stacksa;
+	while (temp != NULL)
+	{
+		if (temp->index >= min_bucket && temp->index < max_bucket)
+			count++;
+		temp = temp->next;
+	}
+	return (count);
 }

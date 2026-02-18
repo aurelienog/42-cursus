@@ -6,7 +6,7 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 12:57:24 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/17 16:02:28 by ppousser         ###   ########.fr       */
+/*   Updated: 2026/02/18 12:25:24 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	ft_is_str_int(char *src)
 	return (1);
 }
 
-
 static int	ft_is_repetition(char **str)
 {
 	int	i;
@@ -56,12 +55,15 @@ static int	ft_is_repetition(char **str)
 	j = 1;
 	while (str[i])
 	{
-		j = i + 1;
-		while (str[j])
+		if (ft_is_command(str[i]) == 0)
 		{
-			if (ft_atoi(str[i]) == ft_atoi(str[j]))
-				return (0);
-			j++;
+			j = i + 1;
+			while (str[j] && ft_is_command(str[j]) == 0)
+			{
+				if (ft_atoi(str[i]) == ft_atoi(str[j]))
+					return (0);
+				j++;
+			}
 		}
 		i++;
 	}
@@ -79,7 +81,7 @@ int	ft_is_input_valid(char **str, t_command *commands)
 			i++;
 		else if (ft_is_command(str[i]) == 1)
 		{
-			if(extract_commands(str[i], commands) == 0)
+			if (extract_commands(str[i], commands) == 0)
 				return (0);
 			i++;
 		}

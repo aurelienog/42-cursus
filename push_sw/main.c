@@ -6,7 +6,7 @@
 /*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 16:52:05 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/17 11:51:56 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/18 16:03:25 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	if (argc < 2)
-		write (2, "Error\n", 6);
+		return (0);
 	else
 	{
 		push_swap(argc, argv);

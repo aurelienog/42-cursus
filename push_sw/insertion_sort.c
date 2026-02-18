@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 11:19:19 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/17 12:57:17 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/18 12:23:24 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,19 @@ static	int	count_rotations(t_stacks *stacks)
 	return (-1);
 }
 
-static void	rotate_b_to_place_key(t_stacks *stacks, int rotations)
+static void	rotate_b_to_place_key(t_stacks *stacks, int rotations,
+		t_bench *bench)
 {
 	int		i;
 
 	if (rotations == -1)
 	{
 		if (is_max(stacks))
-			pb(stacks);
+			pb(stacks, bench);
 		else
 		{
-			pb(stacks);
-			rb(stacks);
+			pb(stacks, bench);
+			rb(stacks, bench);
 		}
 	}
 	else
@@ -61,28 +62,28 @@ static void	rotate_b_to_place_key(t_stacks *stacks, int rotations)
 		i = 0;
 		while (i < rotations)
 		{
-			rb(stacks);
+			rb(stacks, bench);
 			i++;
 		}
-		pb(stacks);
+		pb(stacks, bench);
 		while (rotations-- > 0)
-			rrb(stacks);
+			rrb(stacks, bench);
 	}
 }
 
-void	insertion_sort(t_stacks *stacks)
+void	insertion_sort(t_stacks *stacks, t_bench *bench)
 {
 	int	rotations;
 	int	i;
 
-	pb(stacks);
+	pb(stacks, bench);
 	i = 0;
 	while (stacks->a)
 	{
 		rotations = count_rotations(stacks);
-		rotate_b_to_place_key(stacks, rotations);
+		rotate_b_to_place_key(stacks, rotations, bench);
 		i++;
 	}
 	while (stacks->b)
-		pa(stacks);
+		pa(stacks, bench);
 }

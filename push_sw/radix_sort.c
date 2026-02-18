@@ -6,13 +6,13 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 08:49:58 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/17 11:48:53 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/18 13:11:01 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	separate_bit(t_stacks *stacks, int size, int bit)
+static void	separate_bit(t_stacks *stacks, int size, int bit, t_bench *bench)
 {
 	int	i;
 
@@ -20,14 +20,14 @@ void	separate_bit(t_stacks *stacks, int size, int bit)
 	while (i < size)
 	{
 		if ((stacks->a->index >> bit & 1) == 0)
-			pb(stacks);
+			pb(stacks, bench);
 		else
-			ra(stacks);
+			ra(stacks, bench);
 		i++;
-	}	
+	}
 }
 
-int	count_max_bits(int size)
+static int	count_max_bits(int size)
 {
 	int	max_bits;
 	int	num_max;
@@ -39,7 +39,7 @@ int	count_max_bits(int size)
 	return (max_bits);
 }
 
-void	radix_sort(t_stacks *stacks, int size)
+void	radix_sort(t_stacks *stacks, int size, t_bench *bench)
 {
 	int	max_bits;
 	int	i;
@@ -48,9 +48,9 @@ void	radix_sort(t_stacks *stacks, int size)
 	i = 0;
 	while (i < max_bits)
 	{
-		separate_bit(stacks, size, i);
+		separate_bit(stacks, size, i, bench);
 		while (stacks->b)
-			pa(stacks);
+			pa(stacks, bench);
 		i++;
 	}
 }

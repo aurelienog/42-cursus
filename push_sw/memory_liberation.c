@@ -6,11 +6,18 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 13:28:59 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/15 13:30:47 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/18 14:28:23 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	clear_all(t_numbers_list **stacks, t_command *commands)
+{
+	clear_lst_numbers(stacks);
+	free(stacks);
+	free(commands->strategy);
+}
 
 void	clear_lst_numbers(t_numbers_list **lst)
 {
