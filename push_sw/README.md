@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by aunoguei and ppousser.*
+*This project has been created as part of the 42 curriculum by aunoguei, ppousser.*
 
 # PUSH SWAP
 
@@ -13,8 +13,6 @@ The program outputs to standard output the sequence of Push_swap operations requ
 The main objective of this project is to explore:
 - Algorithmic time and space complexity
 - How algorithm choice dramatically impacts performance
-
-A good algorithm can mean the difference between a short sequence of operations and an endless scroll of instructions.
 
 ### Implementation
 

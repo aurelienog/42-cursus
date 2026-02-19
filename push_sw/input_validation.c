@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_validation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ppousser <ppousser@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 12:57:24 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/18 12:25:24 by aunoguei         ###   ########.fr       */
+/*   Created: 2026/02/19 11:09:42 by ppousser          #+#    #+#             */
+/*   Updated: 2026/02/19 11:09:45 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,13 @@ static int	ft_is_repetition(char **str)
 		if (ft_is_command(str[i]) == 0)
 		{
 			j = i + 1;
-			while (str[j] && ft_is_command(str[j]) == 0)
+			while (str[j])
 			{
-				if (ft_atoi(str[i]) == ft_atoi(str[j]))
-					return (0);
+				if (ft_is_command(str[j]) == 0)
+				{
+					if (ft_atoi(str[i]) == ft_atoi(str[j]))
+						return (0);
+				}
 				j++;
 			}
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manager_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppousser <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ppousser <ppousser@student.42urduliz.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/10 10:31:34 by ppousser          #+#    #+#             */
-/*   Updated: 2026/02/18 16:08:39 by ppousser         ###   ########.fr       */
+/*   Created: 2026/02/19 11:11:26 by ppousser          #+#    #+#             */
+/*   Updated: 2026/02/19 11:11:28 by ppousser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**extract_numbers(int *size, char **input, t_command commands)
 	j = 0;
 	*size = *size - calcul_size_numb(input);
 	if (*size == 0)
-		write (1, "Error\n", 6);
+		write (2, "Error\n", 6);
 	res = malloc ((*size + 1) * sizeof(char *));
 	if (!res)
 		return (NULL);

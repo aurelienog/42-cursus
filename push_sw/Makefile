@@ -2,7 +2,7 @@ NAME = push_swap
 
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g -I./includes
+CFLAGS = -Wall -Wextra -Werror -I./includes
 LIB_A = ./libft/libft.a
 LIB_DIR = ./libft
 SRC = main.c push_swap.c rules.c list_utils.c adaptive_sort.c stack_init.c operations.c rotate.c reverse.c input_validation.c algorithm_selection.c input_convertion.c input_normalization.c manager_input.c insertion_sort.c ./libft/libft.a bucket_sort.c radix_sort.c memory_liberation.c
