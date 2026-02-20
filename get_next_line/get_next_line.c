@@ -6,7 +6,7 @@
 /*   By: aunoguei <aunoguei@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 10:27:07 by aunoguei          #+#    #+#             */
-/*   Updated: 2026/02/09 18:24:13 by aunoguei         ###   ########.fr       */
+/*   Updated: 2026/02/20 12:06:27 by aunoguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*read_and_join(int fd, char *readed)
 		buffer[bytesread] = '\0';
 		temp = newstrjoin(readed, buffer);
 		if (!temp)
-			return (free(buffer), NULL);
+			return (free(readed), free(buffer), NULL);
 		readed = temp;
 	}
 	free(buffer);
@@ -88,6 +88,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	if (!readed)
 		readed = ft_strdup("");
+	if (!readed)
+		return (NULL);
 	readed = read_and_join(fd, readed);
 	if (!readed)
 		return (NULL);
