@@ -5,6 +5,7 @@ class SecurePlant:
     def __init__(self, name, height: int, age: int):
 
         self.__name = name
+	created_ok = 1;
         if (height >= 0):
             self.__height = height
         else:
@@ -23,6 +24,7 @@ class SecurePlant:
             self.__height = height
             print(f"Height updated: {self.__height}cm [OK]")
         else:
+		created = 0;
             print(f"Invalid operation attempted: height {height}cm",
                   "[REJECTED]")
             print("Security: Negative height rejected")
@@ -32,6 +34,7 @@ class SecurePlant:
             self.__age = age
             print(f"Age updated: {self.__age} days [OK]")
         else:
+		created = 0;
             print(f"Invalid operation attempted: age {age} days",
                   "[REJECTED]")
             print("Security: Negative age rejected")
@@ -45,6 +48,8 @@ class SecurePlant:
     def get_info(self):
         print(f"Current plant:{self.__name} {self.__height},",
               "{self.__age} days old")
+if (created_ok)
+	print(f"Plant created: {self.name}")
 
 
 def main():
