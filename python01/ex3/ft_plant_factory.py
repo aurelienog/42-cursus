@@ -18,23 +18,20 @@ class Plant:
 
 def main():
 
-    plants_data = [
-        ("Rose", 25, 30),
-        ("Oak", 200, 365),
-        ("Cactus", 5, 90),
-        ("Sunflower", 80, 45),
-        ("Fern", 15, 120)
+    plants = [
+        Plant("Rose", 25, 30),
+        Plant("Oak", 200, 365),
+        Plant("Cactus", 5, 90),
+        Plant("Sunflower", 80, 45),
+        Plant("Fern", 15, 120)
     ]
-    plants = []
     i = 0
+    print("=== Plant Factory Output ===")
     while (i < 5):
-        plants.append(Plant(
-            plants_data[i][0],
-            plants_data[i][1],
-            plants_data[i][2])
-        )
-        print(f"Created: {plants[i].get_info()}")
+        print(f"Created: {plants[i].name} ({plants[i].height}cm,", end=" ")
+        print(f"{plants[i].days} days)")
         i += 1
+    print(f"\nTotal plants created: {i}")
 
 
 if __name__ == "__main__":
