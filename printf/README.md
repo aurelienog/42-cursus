@@ -1,6 +1,6 @@
 *This project has been created as part of the 42 curriculum by aunoguei.*
 
-##Description
+## Description
 
 ft_printf is a project that consists of reimplementing the standard C function `printf()`
 in order to gain a deeper understanding of the C language, variadic functions, and static
@@ -10,7 +10,7 @@ library creation.
 string that specifies how subsequent arguments (accessed via the variable-length argument
 facilities of `stdarg`) are converted for output.
 
-##Implementation
+## Implementation
 
 All functions are written in C and compiled into a static library : libftprintf.a
 
@@ -25,7 +25,7 @@ It supports the following format specifiers:
 - `%X`
 - `%%`
 
-##Instructions
+## Instructions
 
 To compile the library, run :
 make
