@@ -139,17 +139,15 @@ def separate(str: str, size: int) -> tuple:
         i += 1
     key = ft_substr(str, 0, i)
     if i == size or i + 1 == size:
-        raise ValueError
+        raise ValueError("Quantity is missing")
     i += 1
     j = i
     while j < size - 1 and str[j] != ' ':
         j += 1
-    if str[j] == size:
-        raise ValueError
     try:
         value = ft_atoi(ft_substr(str, i, size))
     except ValueError:
-        raise ValueError
+        raise ValueError(f"'{ft_substr(str, i, size)}' is not a valid number")
     return (key, value)
 
 
@@ -159,8 +157,8 @@ def convert_input(argv: list, size: int) -> list:
     while i < size:
         try:
             extract = separate(argv[i], len(argv[i]))
-        except ValueError:
-            raise ValueError
+        except ValueError as e:
+            raise ValueError(f"invalid inventory entry: '{argv[i]}'\n{e}")
         pairs += [extract]
         i += 1
     return pairs
@@ -177,8 +175,8 @@ def main() -> None:
             inventory = make_inventory(pairs)
             create_categories(inventory)
             print_demo(inventory)
-        except ValueError:
-            print("nop")
+        except ValueError as e:
+            print(f"Error: {e}")
 
 
 if __name__ == "__main__":
